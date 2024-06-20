@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('agendas', function(Blueprint $table){
+            $table->id()->autoIncrement();
+            $table->foreignId('id_medico');
+            $table->foreignId('id_paciente');
+            $table->date('fecha');
+            $table->foreignId('id_cita');
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('agendas');
     }
 };

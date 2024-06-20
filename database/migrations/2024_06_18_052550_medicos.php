@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('medicos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombres');
-            $table->string('apellidos');
-            $table->string('correo');
-            $table->integer('telefono');
+            $table->string('nombre');
+            $table->string('correo')->unique();
+            $table->string('telefono');
             $table->string('profesion');
             $table->string('tipo_medico');
             $table->timestamps();

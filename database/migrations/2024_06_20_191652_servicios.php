@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('servicios', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->float('precio');
+            $table->integer('id_tipo_servicio');
+        });
+
+        Schema::create('tipo_servicios', function (Blueprint $table) {
+            $table->id();
+            $table->string('tipo');
+        });
     }
 
     /**
@@ -19,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('servicios');
+        Schema::dropIfExists('tipo_servicios');
     }
 };

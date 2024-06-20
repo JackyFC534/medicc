@@ -13,15 +13,19 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombres');
-            $table->string('apellidos');
+            $table->string('nombre');
             $table->integer('edad');
-            $table->enum('genero', ['Masculino', 'Femenino', 'Otro']);
+            $table->string('sexo');
             $table->string('telefono');
-            $table->string('medico_encargado');
-            $table->string('archivo_expediente')->nullable(); // Puede ser nulo, ya que puede no haber archivo cargado
+
+            $table->unsignedBigInteger('id_medico')->nullable();
+            $table->foreign('id_medico')->references('id')->on('medicos');
+
+            $table->unsignedBigInteger('id_expediente')->unique()->nullable();
+            $table->foreign('id_expediente')->references('id')->on('expedientes');
+
             $table->timestamps();
-        });
+        });    
     }
 
     /**

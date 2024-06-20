@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('citas', function(Blueprint $table){
             $table->id();
-            $table->integer('id_paciente');
-            $table->integer('id_servicio')->unique();
-            $table->float('total_pago');
-            $table->date('fecha');
-            $table->string('status');
+
+            $table->unsignedBigInteger('id_paciente');
+            $table->foreign('id_paciente')->references('id')->on('pacientes');
+
+            $table->datetimes('fecha');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('citas');
     }
 };

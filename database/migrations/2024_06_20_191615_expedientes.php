@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('expedientes', function (Blueprint $table) {
+            $table->id();
+            $table->string('seguimiento');
+            $table->char('archivo');
+            $table->string('extension');
+            $table->bigInteger('tamaño_archivo');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('expedientes');
     }
 };
