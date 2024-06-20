@@ -21,7 +21,7 @@ Route::get('/nuevo_paciente', function () {
 })->middleware(['auth', 'verified'])->name('nuevo_paciente');
 
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
-Route::post('/pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
+Route::post('/nuevo_paciente', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
 
 Route::get('/medicos', function () {
     return view('medicos.crud');
@@ -30,6 +30,10 @@ Route::get('/medicos', function () {
 Route::get('/nuevo_medicos', function () {
     return view('medicos.new');
 })->middleware(['auth', 'verified'])->name('nuevo_medicos');
+
+Route::get('/agenda', function () {
+    return view('agenda.agenda');
+})->middleware(['auth', 'verified'])->name('agenda');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

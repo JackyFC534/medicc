@@ -18,7 +18,7 @@ class PacienteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([ 
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'edad' => 'required|integer',
@@ -30,16 +30,20 @@ class PacienteController extends Controller
 
         $path = $request->file('archivo_expediente') ? $request->file('archivo_expediente')->store('expedientes') : null;
 
-        Paciente::create([
-            'nombres' => $request->input('nombres'),
-            'apellidos' => $request->input('apellidos'),
-            'edad' => $request->input('edad'),
-            'genero' => $request->input('genero'),
-            'telefono' => $request->input('telefono'),
-            'medico_encargado' => $request->input('medico_encargado'),
-            'archivo_expediente' => $path,
-        ]);
+        $paciente = new Paciente();
+       
+        $paciente->nombre = $request->file('nombres');
+        $paciente->apellidos = $request->file('apellidos');
+        $paciente->apellidos = $request->file('edad');
+        $paciente->apellidos = $request->file('genero');
+        $paciente->apellidos = $request->file('telefono');
+        $paciente->apellidos = $request->file('medico_encargado');
+        $paciente->apellidos = $request->file('archivo_expediente');
+        
+        #Paciente::create($validate);
 
-        return redirect()->route('pacientes')->with('success', 'Paciente registrado con éxito.');
+        $paciente->save();
+
+        return redirect()->route('dashboard');
     }
 }
