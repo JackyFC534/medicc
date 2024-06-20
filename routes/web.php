@@ -35,6 +35,22 @@ Route::get('/agenda', function () {
     return view('agenda.agenda');
 })->middleware(['auth', 'verified'])->name('agenda');
 
+Route::get('/servicios', function () {
+    return view('servicios.crud');
+})->middleware(['auth', 'verified'])->name('servicios');
+
+Route::get('/nuevo_servicio', function () {
+    return view('servicios.new');
+})->middleware(['auth', 'verified'])->name('nuevo_servicio');
+
+Route::get('/productos', function () {
+    return view('productos.crud');
+})->middleware(['auth', 'verified'])->name('productos');
+
+Route::get('/nuevo_producto', function () {
+    return view('productos.new');
+})->middleware(['auth', 'verified'])->name('nuevo_producto');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

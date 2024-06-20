@@ -46,17 +46,15 @@
                                 <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
                                 <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  required />
                             </div>
-                            </div>
                             <div>
                                 <label for="profesion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profesión</label>
-                                <input type="text" id="profesion" name="profesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Smith" required />
+                                <input type="text" id="profesion" name="profesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enfermera" required />
                             </div>
-                            <br>
                             <div>
                                 <label for="tipo_med" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de médico</label>
-                                <input type="text" id="tipo_med" name="tipo_med" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Smith" required />
+                                <input type="text" id="tipo_med" name="tipo_med" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Urgencias" required />
                             </div>
-                            <br>
+                            </div>
                             <button type="submit" id="boton" style="width: 105px">Submit</button>
                             <a href="{{ route('medicos') }}" id="boton" style="width: 105px">Cancelar</a>
 

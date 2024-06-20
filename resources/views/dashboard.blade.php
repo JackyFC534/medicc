@@ -56,7 +56,7 @@
                             <div class="p-6 text-gray-900">
                             ¡Asesorías médicas para ti!
                             <p>Ofreciendo atención de calidad para tus necesidades de salud.</p>
-                            <a href="#" class="boton">Botón</a>
+                            <a href="#" class="boton">Más Información</a>
                             </div>
                         </div>
                     </div>

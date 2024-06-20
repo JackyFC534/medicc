@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Auto-incremento y clave primaria 'id'
             $table->string('nombre');
             $table->integer('edad');
             $table->string('sexo');
             $table->string('telefono');
 
-            $table->unsignedBigInteger('id_medico')->nullable();
+            $table->unsignedBigInteger('id_medico')->nullable(); // Clave foránea a tabla 'medicos'
             $table->foreign('id_medico')->references('id')->on('medicos');
 
-            $table->unsignedBigInteger('id_expediente')->unique()->nullable();
+            $table->unsignedBigInteger('id_expediente')->unique()->nullable(); // Clave foránea a tabla 'expedientes'
             $table->foreign('id_expediente')->references('id')->on('expedientes');
 
-            $table->timestamps();
-        });    
+            $table->timestamps(); // Campos 'created_at' y 'updated_at'
+        });
     }
 
     /**
@@ -36,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('pacientes');
     }
 };
+
