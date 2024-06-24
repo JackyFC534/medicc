@@ -24,26 +24,26 @@ class PacienteController extends Controller
             'edad' => 'required|integer',
             'genero' => 'required|string',
             'telefono' => 'required|string|max:15',
-            'medico_encargado' => 'required|string|max:255',
-            'archivo_expediente' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'id_medico' => 'required|string|max:255',
+            'id_expediente' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        $path = $request->file('archivo_expediente') ? $request->file('archivo_expediente')->store('expedientes') : null;
+        $path = $request->file('id_expediente') ? $request->file('archivo_expediente')->store('expedientes') : null;
 
         $paciente = new Paciente();
        
-        $paciente->nombre = $request->file('nombres');
+        $paciente->nombres = $request->file('nombres');
         $paciente->apellidos = $request->file('apellidos');
-        $paciente->apellidos = $request->file('edad');
-        $paciente->apellidos = $request->file('genero');
-        $paciente->apellidos = $request->file('telefono');
-        $paciente->apellidos = $request->file('medico_encargado');
-        $paciente->apellidos = $request->file('archivo_expediente');
+        $paciente->edad = $request->file('edad');
+        $paciente->genero = $request->file('genero');
+        $paciente->telefono = $request->file('telefono');
+        $paciente->id_medico = $request->file('id_medico');
+        $paciente->id_expediente = $request->file('id_expediente');
         
-        #Paciente::create($validate);
+        Paciente::create($validate);
 
         $paciente->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('pacientes.crud');
     }
 }

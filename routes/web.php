@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\MedicoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,9 +28,13 @@ Route::get('/medicos', function () {
     return view('medicos.crud');
 })->middleware(['auth', 'verified'])->name('medicos');
 
-Route::get('/nuevo_medicos', function () {
+Route::get('/nuevo_medico', function () {
     return view('medicos.new');
-})->middleware(['auth', 'verified'])->name('nuevo_medicos');
+})->middleware(['auth', 'verified'])->name('nuevo_medico');
+
+Route::get('/medicos', [MedicoController::class, 'index'])->name('medicos');
+Route::post('/nuevo_medico', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
+
 
 Route::get('/agenda', function () {
     return view('agenda.agenda');

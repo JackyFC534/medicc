@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('medicos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombres');
+            $table->string('apellidos');
             $table->string('correo')->unique();
             $table->string('telefono');
             $table->string('profesion');

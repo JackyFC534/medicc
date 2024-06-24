@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_paciente');
             $table->foreign('id_paciente')->references('id')->on('pacientes');
 
-            $table->datetimes('fecha');
+            $table->timestamps();
         });
     }
 

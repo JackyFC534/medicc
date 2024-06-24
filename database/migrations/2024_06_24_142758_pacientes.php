@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id(); // Auto-incremento y clave primaria 'id'
-            $table->string('nombre');
+            $table->string('nombres');
+            $table->string('apellidos');
+
             $table->integer('edad');
-            $table->string('sexo');
+            $table->string('genero');
             $table->string('telefono');
 
             $table->unsignedBigInteger('id_medico')->nullable(); // Clave foránea a tabla 'medicos'
