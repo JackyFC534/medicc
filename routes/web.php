@@ -13,16 +13,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/pacientes', function () {
-    return view('pacientes.crud');
-})->middleware(['auth', 'verified'])->name('pacientes');
-
-Route::get('/nuevo_paciente', function () {
-    return view('pacientes.new');
-})->middleware(['auth', 'verified'])->name('nuevo_paciente');
-
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
-Route::post('/nuevo_paciente', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
+Route::get('/pacientes/create', [PacienteController::class, 'create'])->name('pacientes.create');
+Route::post('/pacientes/store', [PacienteController::class, 'store'])->name('pacientes.store');
+Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy'])->name('pacientes.destroy');
 
 Route::get('/nuevo_medico', function () {
     return view('medicos.new');
