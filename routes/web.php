@@ -24,17 +24,13 @@ Route::get('/nuevo_paciente', function () {
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
 Route::post('/nuevo_paciente', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
 
-Route::get('/medicos', function () {
-    return view('medicos.crud');
-})->middleware(['auth', 'verified'])->name('medicos');
-
 Route::get('/nuevo_medico', function () {
     return view('medicos.new');
 })->middleware(['auth', 'verified'])->name('nuevo_medico');
 
 Route::get('/medicos', [MedicoController::class, 'index'])->name('medicos');
-Route::post('/nuevo_medico', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
-
+Route::post('/nuevo_medico', [MedicoController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
+Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->name('medicos.destroy');
 
 Route::get('/agenda', function () {
     return view('agenda.agenda');

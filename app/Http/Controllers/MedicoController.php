@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Medico;
 
-
+ 
 class MedicoController extends Controller
 {
     public function index()
     {
+
         // Obtener todos los pacientes de la base de datos
         $medicos = Medico::all();
         
@@ -28,23 +29,28 @@ class MedicoController extends Controller
             'tipo_medico' => 'required|string|max:255',
         ]);
 
-        $medico = new Medico();
-       
-        $medico->nombres = $request->file('nombres');
-        $medico->apellidos = $request->file('apellidos');
-        $medico->correo = $request->file('correo');
-        $medico->genero = $request->file('genero');
-        $medico->telefono = $request->file('telefono');
-        $medico->profesion = $request->file('profesion');
-        $medico->tipo_medico = $request->file('tipo_medico');
-        
         Medico::create($validate);
 
-        $medico->save();
-
-        return redirect()->route('medicos.crud');
-
+        return redirect()->route('medicos');
     }
+
+    public function destroy($id)
+    {
+        // Encuentra el médico por su ID
+        $medico = Medico::find($id);
+
+        // Verifica si el médico existe
+        if ($medico) {
+            // Elimina el registro
+            $medico->delete();
+
+            // Redirige a la lista de médicos con un mensaje de éxito
+            return redirect()->route('medicos')->with('success', 'Médico eliminado exitosamente.');
+        } else {
+            // Redirige a la lista de médicos con un mensaje de error
+            return redirect()->route('medicos')->with('error', 'Médico no encontrado.');
+        }
+    }   
 
 
 }

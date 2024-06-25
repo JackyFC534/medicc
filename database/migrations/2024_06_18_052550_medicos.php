@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombres');
             $table->string('apellidos');
-            $table->string('correo')->unique();
+            $table->string('correo');
             $table->string('telefono');
             $table->string('profesion');
             $table->string('tipo_medico');

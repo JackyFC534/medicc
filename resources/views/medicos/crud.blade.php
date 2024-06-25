@@ -90,6 +90,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($medicos as $medico)
                                 <tr>
                                     <td>
                                         <div class="flex items-center">
@@ -97,13 +98,13 @@
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="font-medium">1</td>
-                                    <td>Hestybalyz Jackelyn</td>
-                                    <td>Fernandez Cantu</td>
-                                    <td>21@up.com</td>
-                                    <td>123456789</td>
-                                    <td>Enfermera</td>
-                                    <td>Urgencias</td>
+                                    <td class="font-medium">{{ $medico->id }}</td>
+                                    <td>{{ $medico->nombres }}</td>
+                                    <td>{{ $medico->apellidos }}</td>
+                                    <td>{{ $medico->correo }}</td>
+                                    <td>{{ $medico->telefono }}</td>
+                                    <td>{{ $medico->profesion }}</td>
+                                    <td>{{ $medico->tipo_medico }}</td>
                                     <td>
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
@@ -111,11 +112,16 @@
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                         </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                        </button>
+                                        <form action="{{ route('medicos.destroy', $medico->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

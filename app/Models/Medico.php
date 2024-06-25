@@ -12,7 +12,7 @@ class Medico extends Model
     protected $fillable = [
         'nombres',
         'apellidos',
-        'correo', 
+        'correo',
         'telefono',
         'profesion',
         'tipo_medico',
