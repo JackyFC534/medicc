@@ -67,6 +67,14 @@ Route::get('/nuevo_pago', function () {
     return view('pagos.new');
 })->middleware(['auth', 'verified'])->name('nuevo_pago');
 
+Route::get('/consultas', function () {
+    return view('consultas.crud');
+})->middleware(['auth', 'verified'])->name('consultas');
+
+Route::get('/nueva_consulta', function () {
+    return view('consultas.new');
+})->middleware(['auth', 'verified'])->name('nueva_consulta');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

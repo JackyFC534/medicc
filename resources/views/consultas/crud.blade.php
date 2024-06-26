@@ -58,7 +58,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Médicos') }}
+            {{ __('Consultas') }}
         </h2>
     </x-slot>
 
@@ -66,7 +66,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('nuevo_medico') }}" id="boton">Agregar médico</a>
+                    <a href="{{ route('nueva_consulta') }}" id="boton">Agregar consulta</a>
                     <br><br>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -79,19 +79,14 @@
                                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                         </div>
                                     </th>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre(s)</th>
-                                    <th scope="col">Apellido(s)</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Cedula profesional</th>
-                                    <!-- agregar para asignar enfermeras-->
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Medico</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($medicos as $medico)
                                 <tr>
                                     <td>
                                         <div class="flex items-center">
@@ -99,13 +94,10 @@
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="font-medium">{{ $medico->id }}</td>
-                                    <td>{{ $medico->nombres }}</td>
-                                    <td>{{ $medico->apellidos }}</td>
-                                    <td>{{ $medico->correo }}</td>
-                                    <td>{{ $medico->telefono }}</td>
-                                    <td>{{ $medico->especialidad }}</td>
-                                    <td>{{ $medico->cedula_profesional }}</td>
+                                    <td>1</td>
+                                    <td>2024-06-25</td>
+                                    <td>Paciente 2</td>
+                                    <td>Medico A</td>
                                     <td>
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
@@ -113,16 +105,11 @@
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                         </button>
-                                        <form action="{{ route('medicos.destroy', $medico->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                            </button>
-                                        </form>
+                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                        </button>
                                     </td>
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
