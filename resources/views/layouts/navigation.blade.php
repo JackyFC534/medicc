@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('productos')" :active="request()->routeIs('productos')">
+                    <x-nav-link :href="route('pagos')" :active="request()->routeIs('pagos')">
                         {{ __('Pagos') }}
                     </x-nav-link>
                 </div>

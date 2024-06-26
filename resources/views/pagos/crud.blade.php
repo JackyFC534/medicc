@@ -58,7 +58,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ventas') }}
+            {{ __('Pagos') }}
         </h2>
     </x-slot>
 
@@ -66,7 +66,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('nueva_venta') }}" id="boton">Agregar venta</a>
+                    <a href="{{ route('nuevo_pago') }}" id="boton">Agregar pago</a>
                     <br><br>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -79,11 +79,11 @@
                                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                         </div>
                                     </th>
-                                    <th scope="col">Fecha</th>
                                     <th scope="col">Cliente</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Fecha de pago</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Método de pago</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -95,11 +95,11 @@
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <td>2024-06-25</td>
                                     <td>Cliente A</td>
-                                    <td>Producto X</td>
-                                    <td>2</td>
-                                    <td>$100.00</td>
+                                    <td>2024-06-25</td>
+                                    <td>$100</td>
+                                    <td>Tarjeta</td>
+                                    <td>Pagado</td>
                                     <td>
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
