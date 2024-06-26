@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prueba_Agenda', function(Blueprint $table){
-            $table->id()->autoIncrement();
-            $table->foreignId('id_medico');
-            $table->foreignId('id_paciente');
-            $table->date('fecha');
-            $table->foreignId('id_cita');
+        Schema::create('agendas', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end')->nullable();
+            $table->timestamps();
         });
     }
 
