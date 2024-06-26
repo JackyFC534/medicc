@@ -12,10 +12,18 @@ class Paciente extends Model
     protected $fillable = [
         'nombres',
         'apellidos',
-        'edad', 
+        'fecha_nacimiento',
         'genero',
+        'correo',
         'telefono',
+        'notas',
         'id_medico',
         'id_expediente',
     ];
+
+    // Accesor para calcular la edad
+    public function getEdadAttribute()
+    {
+        return Carbon::parse($this->fecha_nacimiento)->age;
+    }
 }

@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
 
-            $table->integer('edad');
+            $table->date('fecha_nacimiento');
             $table->string('genero');
+
+            $table->string('correo');
             $table->string('telefono');
+            $table->string('notas');
 
             $table->unsignedBigInteger('id_medico')->nullable(); // Clave foránea a tabla 'medicos'
             $table->foreign('id_medico')->references('id')->on('medicos');

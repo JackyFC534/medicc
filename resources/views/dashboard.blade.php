@@ -24,8 +24,7 @@
             font-weight: bold;
         }
 
-        .boton {
-            font-size: 15px;
+        #boton {
             display: inline-block;
             padding: 10px 20px;
             background-color: black;
@@ -34,6 +33,7 @@
             font-weight: bold;
             border-radius: 5px;
             text-align: center;
+            font-size: 15px;
         }
     </style>
 
@@ -56,7 +56,7 @@
                             <div class="p-6 text-gray-900">
                             ¡Asesorías médicas para ti!
                             <p>Ofreciendo atención de calidad para tus necesidades de salud.</p>
-                            <a href="#" class="boton">Más Información</a>
+                            <a href="#" id="boton">Iniciar Sesión</a>
                             </div>
                         </div>
                     </div>
