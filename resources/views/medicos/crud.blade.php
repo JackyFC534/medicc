@@ -84,8 +84,8 @@
                                     <th scope="col">Apellido(s)</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Teléfono</th>
-                                    <th scope="col">Profesión</th>
-                                    <th scope="col">Tipo de médico</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Cedula profesional</th>
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
@@ -103,8 +103,8 @@
                                     <td>{{ $medico->apellidos }}</td>
                                     <td>{{ $medico->correo }}</td>
                                     <td>{{ $medico->telefono }}</td>
-                                    <td>{{ $medico->profesion }}</td>
-                                    <td>{{ $medico->tipo_medico }}</td>
+                                    <td>{{ $medico->especialidad }}</td>
+                                    <td>{{ $medico->cedula_profesional }}</td>
                                     <td>
                                         <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">

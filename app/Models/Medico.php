@@ -14,7 +14,7 @@ class Medico extends Model
         'apellidos',
         'correo',
         'telefono',
-        'profesion',
-        'tipo_medico',
+        'especialidad',
+        'cedula_profesional',
     ];
 }

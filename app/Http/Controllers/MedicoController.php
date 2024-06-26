@@ -25,8 +25,8 @@ class MedicoController extends Controller
             'apellidos' => 'required|string|max:255',
             'correo' => 'required|string|max:255',
             'telefono' => 'required|string|max:15',
-            'profesion' => 'required|string|max:255',
-            'tipo_medico' => 'required|string|max:255',
+            'especialidad' => 'required|string|max:255',
+            'cedula_profesional' => 'required|string|max:255',
         ]);
 
         Medico::create($validate);

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('apellidos');
             $table->string('correo');
             $table->string('telefono');
-            $table->string('profesion');
-            $table->string('tipo_medico');
+            $table->string('especialidad');
+            $table->string('cedula_profesional');
             $table->timestamps();
         });
     }
