@@ -6,6 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     
     <x-app-layout>
     <style>
@@ -49,30 +52,65 @@
                 ],
                 dateClick: function(info) {
                     Swal.fire({
-                        title: 'Agregar evento',
-                        input: 'text',
-                        inputLabel: 'Nombre del evento',
+                        title: 'Agregar cita',
+                        html:
+                            '<input id="swal-input1" class="swal2-input" placeholder="Nombre del paciente"><br>' +
+                            '<label for="swal-input2" class="swal2-label">Hora de inicio</label>' +
+                            '<input type="time" id="swal-input2" class="swal2-input"><br>' +
+                            '<label for="swal-input3" class="swal2-label">Hora de fin</label>' +
+                            '<input type="time" id="swal-input3" class="swal2-input">' +
+                            '<input id="swal-input4" class="swal2-input" placeholder="Motivo de la cita">' +
+                            '<textarea id="swal-input5" class="swal2-textarea" placeholder="Notas"></textarea>',
+                        focusConfirm: false,
                         showCancelButton: true,
                         confirmButtonText: 'Guardar',
                         cancelButtonText: 'Cancelar',
                         reverseButtons: true,
-                        preConfirm: (eventTitle) => {
-                            if (!eventTitle) {
-                                Swal.showValidationMessage('Debes escribir un nombre para el evento');
+                        preConfirm: () => {
+                            const nombre = document.getElementById('swal-input1').value;
+                            const horaInicio = document.getElementById('swal-input2').value;
+                            const horaFin = document.getElementById('swal-input3').value;
+                            const motivo = document.getElementById('swal-input4').value;
+                            const notas = document.getElementById('swal-input5').value;
+
+                            if (!nombre || !horaInicio || !horaFin || !motivo) {
+                                Swal.showValidationMessage('Todos los campos son obligatorios');
                                 return false;
                             }
+
+                            return {
+                                nombre: nombre,
+                                horaInicio: horaInicio,
+                                horaFin: horaFin,
+                                motivo: motivo,
+                                notas: notas
+                            };
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const { nombre, horaInicio, horaFin, motivo, notas } = result.value;
                             calendar.addEvent({
-                                title: eventTitle,
-                                start: info.date,
-                                allDay: info.allDay
+                                title: `${nombre} - ${motivo}`,
+                                start: `${info.dateStr}T${horaInicio}`,
+                                end: `${info.dateStr}T${horaFin}`,
+                                extendedProps: {
+                                    notas: notas
+                                }
                             });
                         }
                     });
                 },
                 eventClick: function(info) {
+                    const { title, start, end, extendedProps } = info.event;
                     Swal.fire({
-                        title: 'Detalles del evento',
-                        text: info.event.title,
+                        title: 'Detalles de la cita',
+                        html: `
+                            <p><strong>Nombre del paciente:</strong> ${title.split(' - ')[0]}</p>
+                            <p><strong>Motivo:</strong> ${title.split(' - ')[1]}</p>
+                            <p><strong>Hora de inicio:</strong> ${start.toISOString().slice(11, 16)}</p>
+                            <p><strong>Hora de fin:</strong> ${end ? end.toISOString().slice(11, 16) : ''}</p>
+                            <p><strong>Notas:</strong> ${extendedProps.notas}</p>
+                        `,
                         showCancelButton: true,
                         confirmButtonText: 'Cerrar',
                         cancelButtonText: 'Borrar',
@@ -88,4 +126,7 @@
             calendar.render();
         });
     </script>
+
+
+
 </x-app-layout>

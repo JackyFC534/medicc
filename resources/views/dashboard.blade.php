@@ -35,6 +35,20 @@
             text-align: center;
             font-size: 15px;
         }
+        #registro {
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            margin-left: 20px;
+            color: gray; /* Color por defecto */
+            text-decoration: none; /* Eliminar subrayado por defecto */
+        }
+
+        #registro:hover {
+            color: black; /* Color al pasar el cursor */
+            text-decoration: none; /* Mantener subrayado desactivado */
+        }
+
     </style>
 
     <x-slot name="header">
@@ -57,6 +71,7 @@
                             ¡Asesorías médicas para ti!
                             <p>Ofreciendo atención de calidad para tus necesidades de salud.</p>
                             <a href="#" id="boton">Iniciar Sesión</a>
+                            <a href="#" id="registro">Crear una cuenta</a>
                             </div>
                         </div>
                     </div>

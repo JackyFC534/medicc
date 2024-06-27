@@ -28,12 +28,16 @@ Route::get('/medicos', [MedicoController::class, 'index'])->name('medicos');
 Route::post('/nuevo_medico', [MedicoController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
 Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->name('medicos.destroy');
 
+Route::get('/medicos_agenda', function () {
+    return view('medicos.agenda');
+})->middleware(['auth', 'verified'])->name('medicos_agenda');
+
 Route::get('/agenda', function () {
     return view('agenda.agenda');
 })->middleware(['auth', 'verified'])->name('agenda');
 
-Route::post('/agregar-evento', [EventController::class, 'store'])->name('agenda.store');
-Route::post('/borrar-evento', [EventController::class, 'destroy'])->name('agenda.destroy');
+//Route::post('/agregar-evento', [EventController::class, 'store'])->name('agenda.store');
+//Route::post('/borrar-evento', [EventController::class, 'destroy'])->name('agenda.destroy');
 
 Route::get('/servicios', function () {
     return view('servicios.crud');
