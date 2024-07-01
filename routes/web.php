@@ -8,12 +8,8 @@ use App\Http\Controllers\AgendaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
 Route::get('/pacientes/create', [PacienteController::class, 'create'])->name('pacientes.create');

@@ -1,4 +1,5 @@
 <x-app-layout>
+
         <!-- Bootstrap CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -70,8 +71,8 @@
                             <div class="p-6 text-gray-900">
                             ¡Asesorías médicas para ti!
                             <p>Ofreciendo atención de calidad para tus necesidades de salud.</p>
-                            <a href="#" id="boton">Iniciar Sesión</a>
-                            <a href="#" id="registro">Crear una cuenta</a>
+                            <a href="{{ route('login') }}" id="boton">Iniciar Sesión</a>
+                            <a href="{{ route('register') }}" id="registro">Crear una cuenta</a>
                             </div>
                         </div>
                     </div>
