@@ -11,18 +11,18 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
-Route::get('/pacientes/create', [PacienteController::class, 'create'])->name('pacientes.create');
-Route::post('/pacientes/store', [PacienteController::class, 'store'])->name('pacientes.store');
-Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy'])->name('pacientes.destroy');
+Route::get('/pacientes', [PacienteController::class, 'index'])->middleware(['auth', 'verified'])->name('pacientes');
+Route::get('/pacientes/create', [PacienteController::class, 'create'])->middleware(['auth', 'verified'])->name('pacientes.create');
+Route::post('/pacientes/store', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('pacientes.store');
+Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy'])->middleware(['auth', 'verified'])->name('pacientes.destroy');
 
 Route::get('/nuevo_medico', function () {
     return view('medicos.new');
 })->middleware(['auth', 'verified'])->name('nuevo_medico');
 
-Route::get('/medicos', [MedicoController::class, 'index'])->name('medicos');
+Route::get('/medicos', [MedicoController::class, 'index'])->middleware(['auth', 'verified'])->name('medicos');
 Route::post('/nuevo_medico', [MedicoController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
-Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->name('medicos.destroy');
+Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('medicos.destroy');
 
 Route::get('/medicos_agenda', function () {
     return view('medicos.agenda');

@@ -66,8 +66,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('pacientes.create') }}" id="boton">Agregar paciente</a>
-                    <br><br>
+                    @if (auth()->user()->tipo==="admin")
+                        <a href="{{ route('pacientes.create') }}" id="boton">Agregar paciente</a>
+                        <br><br>
+                    @endif
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="tabla">
@@ -85,7 +87,9 @@
                                     <th scope="col">Edad</th>
                                     <th scope="col">Género</th>
                                     <th scope="col">Teléfono</th>
-                                    <th scope="col">Médico Encargado</th>
+                                    @if (auth()->user()->tipo==="admin")
+                                        <th scope="col">Médico Encargado</th>
+                                    @endif
                                     <th scope="col" style="width: 80px">Expediente</th>
                                     <th scope="col">Acción</th>
                                 </tr>
@@ -105,7 +109,9 @@
                                         <td>{{ $paciente->edad }}</td>
                                         <td>{{ $paciente->genero }}</td>
                                         <td>{{ $paciente->telefono }}</td>
-                                        <td>{{ $paciente->medico_encargado }}</td>
+                                        @if (auth()->user()->tipo==="admin")
+                                            <td>{{ $paciente->medico_encargado }}</td>
+                                        @endif
                                         <td>
                                             <a href="{{ asset('storage/' . $paciente->archivo_expediente) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/expedientes.png') }}" style="width: 25px">
@@ -118,13 +124,15 @@
                                             <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                             </a>
-                                            <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                    <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                                </button>
-                                            </form>
+                                            @if (auth()->user()->tipo==="admin")
+                                                <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                        <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
