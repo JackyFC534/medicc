@@ -113,31 +113,30 @@
                                             <td>{{ $paciente->medico_encargado }}</td>
                                         @endif
                                         <td>
-                                            <a href="{{ asset('storage/' . $paciente->archivo_expediente) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                <img src="{{ asset('images/expedientes.png') }}" style="width: 25px">
-                                            </a>
+
                                         </td>
                                         <td>
-                                            <a href="{{ route('pacientes.show', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
-                                            </a>
-                                            <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
-                                            </a>
-                                            @if (auth()->user()->tipo==="admin")
-                                                <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                        <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                                    </button>
-                                                </form>
-                                            @endif
+                                        <a href="{{ route('pacientes.show', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
+                                        </a>
+                                        <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
+                                        </a>
+                                        @if (auth()->user()->tipo === "admin")
+                                            <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                    <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                                </button>
+                                            </form>
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $pacientes->links() }}
                     </div>
                 </div>
             </div>
