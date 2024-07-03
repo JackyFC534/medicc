@@ -105,7 +105,7 @@
                                 <div class="p-6 text-gray-900"> 
                                 ¡ Bienvenido doctor <b>{{ Auth::user()->name }} </b>!
                                 <p>Inicia viendo el itinerario de hoy</p>
-                                <a href="{{ route('agenda') }}" id="boton">Ver Agenda</a>
+                                <a href="{{ route('medicos_agenda') }}" id="boton">Ver Agenda</a>
                                 </div>
                             </div>
                         </div>

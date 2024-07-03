@@ -67,52 +67,54 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <a href="{{ route('nueva_consulta') }}" id="boton">Agregar consulta</a>
+                    
+                    @if (auth()->user()->tipo==="admin")
                     <br><br>
-
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="tabla">
-                            <thead>
-                                <tr>
-                                    <th scope="col">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                        </div>
-                                    </th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Paciente</th>
-                                    <th scope="col">Medico</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <td>1</td>
-                                    <td>2024-06-25</td>
-                                    <td>Paciente 2</td>
-                                    <td>Medico A</td>
-                                    <td>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                            <table class="tabla">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="flex items-center">
+                                                <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                                            </div>
+                                        </th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Paciente</th>
+                                        <th scope="col">Medico</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="flex items-center">
+                                                <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                            </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>2024-06-25</td>
+                                        <td>Paciente 2</td>
+                                        <td>Medico A</td>
+                                        <td>
+                                            <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
+                                            </button>
+                                            <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
+                                            </button>
+                                            <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
