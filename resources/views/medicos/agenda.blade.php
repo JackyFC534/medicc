@@ -21,7 +21,11 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        @if (auth()->user()->tipo==="medico")
             {{ __('Agenda del Médico') }}
+        @elseif (auth()->user()->tipo==="secretaria")
+            {{ __('Agenda Secretaria') }}
+        @endif
         </h2>
     </x-slot>
 

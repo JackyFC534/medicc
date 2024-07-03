@@ -26,7 +26,9 @@
         }
 
         #boton {
-            display: inline-block;
+            display: inline-flex; /* Cambia a inline-flex */
+            align-items: center; /* Centra verticalmente */
+            justify-content: center; /* Centra horizontalmente */
             padding: 10px 20px;
             background-color: black;
             color: white;
@@ -94,7 +96,7 @@
                             </div>
                         </div>
 
-                    <!-- Vista Administrador-->
+                    <!-- Vista Doctor-->
                     @elseif (auth()->user()->tipo==="doctor")
                         <div class="container">
                             <div class="imagen">
@@ -106,6 +108,25 @@
                                 ¡ Bienvenido doctor <b>{{ Auth::user()->name }} </b>!
                                 <p>Inicia viendo el itinerario de hoy</p>
                                 <a href="{{ route('medicos_agenda') }}" id="boton">Ver Agenda</a>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Vista Administrador-->
+                    @elseif (auth()->user()->tipo==="secretaria")
+                        <div class="container">
+                            <div class="imagen">
+                                <img src="{{ asset('images/img5.png') }}" width="400">
+                            </div>
+                        
+                            <div class="texto">
+                                <div class="p-6 text-gray-900"> 
+                                ¡ Bienvenido doctor <b>{{ Auth::user()->name }} </b>!
+                                <br><br>
+                                <div class="grid gap-6 mb-6 md:grid-cols-3">
+                                <a href="{{ route('pacientes') }}" id="boton" style="width: 110px">Registro paciente</a>
+                                <a href="{{ route('medicos_agenda') }}" id="boton" style="width: 110px">Agendar citas</a>
+                                <a href="{{ route('pagos') }}" id="boton" style="width: 110px">Pagos</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
