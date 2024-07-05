@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Paciente extends Model
 {
@@ -16,9 +17,8 @@ class Paciente extends Model
         'genero',
         'correo',
         'telefono',
-        'notas',
-        'id_medico',
-        'id_expediente',
+        'contraseña', // ?
+        'notas'
     ];
 
     // Accesor para calcular la edad

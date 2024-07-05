@@ -86,11 +86,9 @@
                                     <th scope="col">Apellido(s)</th>
                                     <th scope="col">Edad</th>
                                     <th scope="col">Género</th>
+
+                                    <th scope="col">Correo</th>
                                     <th scope="col">Teléfono</th>
-                                    @if (auth()->user()->tipo==="admin")
-                                        <th scope="col">Médico Encargado</th>
-                                    @endif
-                                    <th scope="col" style="width: 80px">Expediente</th>
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
@@ -108,20 +106,14 @@
                                         <td>{{ $paciente->apellidos }}</td>
                                         <td>{{ $paciente->edad }}</td>
                                         <td>{{ $paciente->genero }}</td>
+                                        <td>{{ $paciente->correo }}</td>
                                         <td>{{ $paciente->telefono }}</td>
-                                        @if (auth()->user()->tipo==="admin")
-                                            <td>{{ $paciente->medico_encargado }}</td>
-                                        @endif
                                         <td>
-                                            <a href="{{ asset('storage/' . $paciente->archivo_expediente) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                                <img src="{{ asset('images/expedientes.png') }}" style="width: 25px">
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('pacientes.show', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <a href="{{ route('pacientes.create', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
                                             </a>
-                                            <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <!-- hacer funcion edit-->
+                                            <a href="{{ route('pacientes.create', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                             </a>
                                             @if (auth()->user()->tipo==="admin")

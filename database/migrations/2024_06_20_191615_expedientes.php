@@ -13,10 +13,18 @@ return new class extends Migration
     {
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
-            $table->string('seguimiento');
-            $table->char('archivo');
-            $table->string('extension');
-            $table->bigInteger('tamaño_archivo');
+            $table->unsignedBigInteger('id_paciente');
+            $table->float('talla');
+            $table->float('peso');
+            $table->float('temperatura');
+            $table->float('presion');
+            $table->float('oxigeno');
+            $table->float('frecuencia');
+
+            $table->unsignedBigInteger('id_paciente');
+
+
+
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::get('/pacientes', [PacienteController::class, 'index'])->middleware(['auth', 'verified'])->name('pacientes');
+
 Route::get('/pacientes/create', [PacienteController::class, 'create'])->middleware(['auth', 'verified'])->name('pacientes.create');
 Route::post('/pacientes/store', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('pacientes.store');
 Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy'])->middleware(['auth', 'verified'])->name('pacientes.destroy');

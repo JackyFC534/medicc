@@ -61,19 +61,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('pacientes.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
-                    <!-- Name -->
+                    <!-- Nombres -->
                     <div>
-                        <x-input-label for="nombre" :value="__('Nombre')" />
-                        <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="name" :value="old('nombre')" required autofocus autocomplete="nombre" />
-                        <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
+                        <x-input-label for="nombres" :value="__('Nombre(s)')" />
+                        <x-text-input id="nombres" class="block mt-1 w-full" type="text" name="names" :value="old('nombres')" required autofocus autocomplete="nombres" />
+                        <x-input-error :messages="$errors->get('nombres')" class="mt-2" />
                     </div>
 
                     <!-- Apellidos -->
                     <div>
-                        <x-input-label for="apellidos" :value="__('Apellidos')" />
+                        <x-input-label for="apellidos" :value="__('Apellido(s)')" />
                         <x-text-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
                         <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
                     </div>
@@ -114,16 +114,6 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <!-- Confirm Password -->
-                    <div>
-                        <x-input-label for="password_confirmation" :value="__('Confirmar contraseña')" />
-
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                        type="password"
-                                        name="password_confirmation" required autocomplete="new-password" />
-
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
@@ -134,28 +124,7 @@
                             {{ __('Registrarse') }}
                         </x-primary-button>
                     </div>
-                    
-                    <!-- Talla -->
-                    <x-text-input id="talla" class="block mt-1 w-full" type="hidden" name="talla" :value="old('talla')" required autofocus autocomplete="talla" />
-
-                    <!-- Saturación de oxigeno -->
-                    <x-text-input id="sat_oxigeno" class="block mt-1 w-full" type="hidden" name="sat_oxigeno" :value="old('sat_oxigeno')" required autofocus autocomplete="sat_oxigeno" />
-
-                    <!-- Frecuencia cardiaca -->
-                    <x-text-input id="frecuencia" class="block mt-1 w-full" type="hidden" name="frecuencia" :value="old('frecuencia')" required autofocus autocomplete="frecuencia" />
-
-                    <!-- Peso -->
-                    <x-text-input id="peso" class="block mt-1 w-full" type="hidden" name="peso" :value="old('peso')" required autofocus autocomplete="peso" />
-
-                    <!-- Tensión arterial -->
-                    <x-text-input id="tension_arterial" class="block mt-1 w-full" type="hidden" name="tension_arterial" :value="old('tension_arterial')" required autofocus autocomplete="tension_arterial" />
-
-                    <!-- id Medico -->
-                    <x-text-input id="id_medico" class="block mt-1 w-full" type="hidden" name="id_medico" :value="old('id_medico')" required autofocus autocomplete="id_medico" />
-                    
-                    <!-- id_expediente -->
-                    <x-text-input id="id_expediente" class="block mt-1 w-full" type="hidden" name="id_expediente" :value="old('id_expediente')" required autofocus autocomplete="id_expediente" />
-
+                
                     </div>
                 </form>
 

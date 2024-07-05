@@ -27,7 +27,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('pacientes.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
@@ -56,6 +56,14 @@
                                 <input type="email" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ejemplo@gmail.com" required />
                             </div>
                             <div>
+                                <label for="contraseña" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                                <input type="password" id="contraseña" name="contraseña" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+                            <div>
+                                <label for="contraseña_confirm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar contraseña</label>
+                                <input type="password" id="contraseña_confirm" name="contraseña_confirm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            </div>
+                            <div>
                                 <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
                                 <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" required />
                             </div>
@@ -63,20 +71,8 @@
                                 <label for="notas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notas</label>
                                 <input type="text" id="notas" name="notas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                             </div>
-                            <div>
-                                <label for="id_medico" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Médico</label>
-                                <select id="id_medico" name="id_medico" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                    <option value="" disabled selected>Selecciona un médico</option>
-                                    @foreach($medicos as $medico)
-                                        <option value="{{ $medico->id }}">{{ $medico->nombres }} {{ $medico->apellidos }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
-                        <div class="mb-6">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="archivo_expediente">Cargar Expediente</label>
-                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="archivo_expediente" name="archivo_expediente" type="file">
-                        </div>
+
                         <button type="submit" id="boton" style="width: 105px">Submit</button>
                         <a href="{{ route('pacientes') }}" id="boton" style="width: 105px">Cancelar</a>
                     </form>

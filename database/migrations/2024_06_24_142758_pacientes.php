@@ -21,15 +21,11 @@ return new class extends Migration
 
             $table->string('correo');
             $table->string('telefono');
+            $table->string('contraseña'); // ?
+
             $table->string('notas');
 
-            $table->unsignedBigInteger('id_medico')->nullable(); // Clave foránea a tabla 'medicos'
-            $table->foreign('id_medico')->references('id')->on('medicos');
-
-            $table->unsignedBigInteger('id_expediente')->unique()->nullable(); // Clave foránea a tabla 'expedientes'
-            $table->foreign('id_expediente')->references('id')->on('expedientes');
-
-            $table->timestamps(); // Campos 'created_at' y 'updated_at'
+            $table->timestamps();
         });
     }
 
