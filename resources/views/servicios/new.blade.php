@@ -27,7 +27,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form method="POST" action="#" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('servicios.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
@@ -39,15 +39,14 @@
                                 <input type="number" id="precio" name="precio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                             </div>
                             <div>
-                                <label for="tipo_servicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Servicio</label>
-                                <input type="text" id="tipo_servicio" name="tipo_servicio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Consulta" required />
+                                <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Servicio</label>
+                                <input type="text" id="tipo" name="tipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Consulta" required />
                             </div>  
                             </div>
                             <button type="submit" id="boton" style="width: 105px">Submit</button>
                             <a href="{{ route('servicios') }}" id="boton" style="width: 105px">Cancelar</a>
                         </div>
                     </form>
-                    
                 </div>
             </div>
         </div>

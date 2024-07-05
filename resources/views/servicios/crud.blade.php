@@ -66,7 +66,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('nuevo_servicio') }}" id="boton">Agregar servicio</a>
+                    <a href="{{ route('servicios.create') }}" id="boton">Agregar servicio</a>
                     <br><br>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -87,6 +87,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($servicios as $servicio)
                                 <tr>
                                     <td>
                                         <div class="flex items-center">
@@ -94,22 +95,29 @@
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <td class="font-medium">1</td>
-                                    <td>Chequeo rutinario</td>
-                                    <td>$350</td>
-                                    <td>Consulta</td>
+                                    <td class="font-medium">{{ $servicio->id }}</td>
+                                    <td>{{ $servicio->nombre }}</td>
+                                    <td>${{ $servicio->precio }}</td>
+                                    <td>{{ $servicio->tipo }}</td>
                                     <td>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        <a href="{{ route('servicios.create', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        </a>
+                                            <!-- hacer funcion edit-->
+                                        <a href="{{ route('servicios.create', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                        </button>
+                                        </a>
+                                        <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                             @method('DELETE')
+                                                <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                    <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                                </button>
+                                        </form>
                                     </td>
+                                
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

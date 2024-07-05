@@ -15,12 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->float('precio');
-            $table->integer('id_tipo_servicio');
-        });
-
-        Schema::create('tipo_servicios', function (Blueprint $table) {
-            $table->id();
             $table->string('tipo');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +26,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('servicios');
-        Schema::dropIfExists('tipo_servicios');
     }
 };

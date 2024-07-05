@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ServicioController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -36,13 +38,12 @@ Route::get('/agenda', function () {
 //Route::post('/agregar-evento', [EventController::class, 'store'])->name('agenda.store');
 //Route::post('/borrar-evento', [EventController::class, 'destroy'])->name('agenda.destroy');
 
-Route::get('/servicios', function () {
-    return view('servicios.crud');
-})->middleware(['auth', 'verified'])->name('servicios');
+Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios');
 
-Route::get('/nuevo_servicio', function () {
-    return view('servicios.new');
-})->middleware(['auth', 'verified'])->name('nuevo_servicio');
+Route::get('/servicios/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
+Route::post('/servicios/store', [ServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('servicios.store');
+Route::delete('/servicios/{id}', [ServicioController::class, 'destroy'])->middleware(['auth', 'verified'])->name('servicios.destroy');
+
 
 Route::get('/productos', function () {
     return view('productos.crud');

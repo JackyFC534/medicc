@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_paciente');
+            //$table->unsignedBigInteger('id_paciente');
             $table->float('talla');
             $table->float('peso');
             $table->float('temperatura');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('oxigeno');
             $table->float('frecuencia');
 
-            $table->unsignedBigInteger('id_paciente');
+            //$table->unsignedBigInteger('id_paciente');
 
 
 
