@@ -1,21 +1,21 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
-use App\Models\Servicio;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 
-class ServicioController extends Controller
+class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Obtener todos los servicios de la base de datos
-        $servicios = Servicio::all();
+        // Obtener todos las ventas de la base de datos
+        $ventas = Venta::all();
         // Pasar los datos a la vista
-        return view('servicios.crud', compact('servicios'));
+        return view('ventas.crud', compact('ventas'));
     }
 
     /**
@@ -23,7 +23,7 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        return view('servicios.new'); // Pasar los servicios a la vista
+        return view('ventas.new'); // Pasar las ventas a la vista
     }
 
     /**
@@ -31,15 +31,15 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        Servicio::create($request->all());
+        Venta::create($request->all());
 
-        return redirect()->route('servicios')->with('success', 'Servicio registrado exitosamente.');
+        return redirect()->route('ventas')->with('success', 'Venta registrado exitosamente.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Servicio $servicio)
+    public function show(Venta $venta)
     {
         //
     }
@@ -47,7 +47,7 @@ class ServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Servicio $servicio)
+    public function edit(Venta $venta)
     {
         //
     }
@@ -55,7 +55,7 @@ class ServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(Request $request, Venta $venta)
     {
         //
     }
@@ -65,17 +65,16 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        $servicio = Servicio::find($id);
+        $venta = Venta::find($id);
 
         // Verifica si el servicio existe
-        if ($servicio) {
+        if ($venta) {
             // Elimina el registro
-            $servicio->delete();
+            $venta->delete();
 
             // Redirige a la lista de servicio con un mensaje de éxito
-            return redirect()->route('servicios')->with('success', 'Servicio eliminado exitosamente.');
+            return redirect()->route('ventas')->with('success', 'Venta eliminada exitosamente.');
         } else {
-            return redirect()->route('servicios')->with('error', 'Servicio no encontrado.');
-        }    
-    }
+            return redirect()->route('ventas')->with('error', 'Venta no encontrado.');
+        }       }
 }

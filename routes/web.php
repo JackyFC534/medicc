@@ -5,6 +5,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\VentaController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -53,13 +54,12 @@ Route::get('/nuevo_producto', function () {
     return view('productos.new');
 })->middleware(['auth', 'verified'])->name('nuevo_producto');
 
-Route::get('/ventas', function () {
-    return view('ventas.crud');
-})->middleware(['auth', 'verified'])->name('ventas');
+Route::get('/ventas', [VentaController::class, 'index'])->middleware(['auth', 'verified'])->name('ventas');
 
-Route::get('/nueva_venta', function () {
-    return view('ventas.new');
-})->middleware(['auth', 'verified'])->name('nueva_venta');
+Route::get('/ventas/create', [VentaController::class, 'create'])->middleware(['auth', 'verified'])->name('ventas.create');
+Route::post('/ventas/store', [VentaController::class, 'store'])->middleware(['auth', 'verified'])->name('ventas.store');
+Route::delete('/ventas/{id}', [VentaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ventas.destroy');
+
 
 Route::get('/pagos', function () {
     return view('pagos.crud');
