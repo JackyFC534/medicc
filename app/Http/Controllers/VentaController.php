@@ -76,5 +76,6 @@ class VentaController extends Controller
             return redirect()->route('ventas')->with('success', 'Venta eliminada exitosamente.');
         } else {
             return redirect()->route('ventas')->with('error', 'Venta no encontrado.');
-        }       }
+        }       
+    }
 }
