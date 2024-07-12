@@ -81,13 +81,6 @@
                 <option value="cita">Cita</option>
                 <option value="plan">Plan</option>
             </select><br><br>
-
-            <label for="event-title">Título:</label>
-            <input type="text" id="event-title" name="event-title"><br><br>
-            <label for="event-date">Fecha:</label>
-            <input type="date" id="event-date" name="event-date"><br><br>
-            <!-- Campo oculto para almacenar la fecha seleccionada -->
-            <input type="hidden" id="selected-date" name="selected-date">
             <button type="submit" class="px-4 py-2 bg-black text-white rounded">Agregar Evento</button>
             <button class="px-4 py-2 bg-gray-500 text-white rounded">Cancelar</button>
         </form>
