@@ -73,16 +73,41 @@
     <!-- Modal para agregar cita -->
     <div id="citaModal" class="modal fixed inset-0 flex items-center justify-center">
         <div class="modal-content">
-            <h2 class="text-xl mb-4">Agregar cita de un paciente</h2>
+            <h2 class="text-xl mb-4">Agregar una cita de paciente</h2>
             <form id="citaForm">
                 <div class="mb-4">
-                    <label for="cita-title" class="block text-gray-700">Título</label>
-                    <input type="text" id="cita-title" name="cita-title" class="w-full px-3 py-2 border rounded">
+                    <label for="paciente" class="block text-gray-700">Nombre del paciente</label>
+                    <select id="paciente" name="paciente" class="w-full px-3 py-2 border rounded" required>
+                        <option value="" disabled selected>Seleccione el paciente...</option>
+                        <option value="paciente 1">paciente 1</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="medico" class="block text-gray-700">Nombre del medico</label>
+                    <select id="medico" name="medico" class="w-full px-3 py-2 border rounded" required>
+                        <option value="" disabled selected>Seleccione el medico...</option>
+                        <option value="medico 1">medico 1</option>
+                    </select>
                 </div>
                 <div class="mb-4">
                     <label for="cita-date" class="block text-gray-700">Fecha</label>
-                    <input type="date" id="cita-date" name="cita-date" class="w-full px-3 py-2 border rounded">
+                    <input type="date" id="cita-date" name="cita-date" class="w-full px-3 py-2 border rounded" readonly>
                 </div>
+                <div class="mb-4">
+                    <label for="hora" class="block text-gray-700">Hora de la cita</label>
+                    <select id="hora" name="hora" class="w-full px-3 py-2 border rounded" required>
+                        <option value="" disabled selected>Seleccione la hora...</option>
+                        <option value="hora 1">hora 1</option>
+                    </select>
+                </div>
+                <div class="mb-4"> <!-- MOTIVO -->
+                    <label for="motivo" class="block text-gray-700">Motivo</label>
+                    <textarea id="motivo" name="motivo" class="w-full px-3 py-2 border rounded h-32 resize-none"></textarea>
+                </div>
+
+                <!-- MONTO -->
+                <input type="hidden" id="monto" name="motivo" value="100">
+                
                 <div class="flex justify-end">
                     <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal('citaModal')">Cancelar</button>
                     <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Agregar</button>
@@ -115,6 +140,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var today = new Date().toISOString().split('T')[0]; // Fecha de hoy en formato YYYY-MM-DD
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 locale: 'es',
@@ -123,10 +150,15 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+                validRange: {
+                    start: today // No permitir fechas anteriores a hoy
+                },
                 dateClick: function(info) {
-                    openModal('eventModal');
-                    document.getElementById('cita-date').value = info.dateStr;
-                    document.getElementById('plan-date').value = info.dateStr;
+                    if (info.dateStr >= today) {
+                        openModal('eventModal');
+                        document.getElementById('cita-date').value = info.dateStr;
+                        document.getElementById('plan-date').value = info.dateStr;
+                    }
                 }
             });
             calendar.render();
