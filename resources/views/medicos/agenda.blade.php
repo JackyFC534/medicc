@@ -11,7 +11,7 @@
             padding: 0 10px;
         }
 
-        #eventModal {
+        .modal {
             display: none;
             position: fixed;
             inset: 0;
@@ -21,7 +21,7 @@
             align-items: center;
         }
 
-        #eventModal .modal-content {
+        .modal-content {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
@@ -40,80 +40,141 @@
     </x-slot>
 
     <div class="py-10">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">
-                <div id="calendar"></div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div id="calendar"></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal para seleccionar el tipo de evento -->
+    <div id="eventModal" class="modal fixed inset-0 flex items-center justify-center">
+        <div class="modal-content">
+            <h2 class="text-xl mb-4">Agregar Evento</h2>
+            <form id="eventForm">
+                <div class="mb-4">
+                    <label for="event-type" class="block text-gray-700">Tipo de evento</label>
+                    <select id="event-type" name="event-type" class="w-full px-3 py-2 border rounded">
+                        <option value="" disabled selected>Seleccione el evento...</option>
+                        <option value="cita">Cita</option>
+                        <option value="plan">Plan</option>
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal('eventModal')">Cancelar</button>
+                    <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded" onclick="nextModal()">Aceptar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-<!-- Modal -->
-<div id="eventModal" class="fixed inset-0 flex items-center justify-center">
-    <div class="modal-content">
-        <h2 class="text-xl mb-4">Agregar Evento</h2>
-        <form id="eventForm">
-            <div class="mb-4">
-                <label for="title" class="block text-gray-700">Título</label>
-                <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="date" class="block text-gray-700">Fecha</label>
-                <input type="date" id="date" name="date" class="w-full px-3 py-2 border rounded">
-            </div>
-            <div class="flex justify-end">
-                <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal()">Cancelar</button>
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Guardar</button>
-            </div>
-        </form>
+    <!-- Modal para agregar cita -->
+    <div id="citaModal" class="modal fixed inset-0 flex items-center justify-center">
+        <div class="modal-content">
+            <h2 class="text-xl mb-4">Agregar cita de un paciente</h2>
+            <form id="citaForm">
+                <div class="mb-4">
+                    <label for="cita-title" class="block text-gray-700">Título</label>
+                    <input type="text" id="cita-title" name="cita-title" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="cita-date" class="block text-gray-700">Fecha</label>
+                    <input type="date" id="cita-date" name="cita-date" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal('citaModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Agregar</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+    <!-- Modal para agregar plan -->
+    <div id="planModal" class="modal fixed inset-0 flex items-center justify-center">
+        <div class="modal-content">
+            <h2 class="text-xl mb-4">Agregar Plan</h2>
+            <form id="planForm">
+                <div class="mb-4">
+                    <label for="plan-title" class="block text-gray-700">Título</label>
+                    <input type="text" id="plan-title" name="plan-title" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="plan-date" class="block text-gray-700">Fecha</label>
+                    <input type="date" id="plan-date" name="plan-date" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal('planModal')">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'es',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            dateClick: function(info) {
-                openModal(info.dateStr);
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                dateClick: function(info) {
+                    openModal('eventModal');
+                    document.getElementById('cita-date').value = info.dateStr;
+                    document.getElementById('plan-date').value = info.dateStr;
+                }
+            });
+            calendar.render();
+
+            document.getElementById('citaForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var title = document.getElementById('cita-title').value;
+                var date = document.getElementById('cita-date').value;
+                if (title && date) {
+                    calendar.addEvent({
+                        title: title,
+                        start: date
+                    });
+                    closeModal('citaModal');
+                }
+            });
+
+            document.getElementById('planForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var title = document.getElementById('plan-title').value;
+                var date = document.getElementById('plan-date').value;
+                if (title && date) {
+                    calendar.addEvent({
+                        title: title,
+                        start: date
+                    });
+                    closeModal('planModal');
+                }
+            });
         });
 
-        calendar.render();
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
 
-        document.getElementById('eventForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var title = document.getElementById('title').value;
-            var date = document.getElementById('date').value;
-
-            if (title && date) {
-                calendar.addEvent({
-                    title: title,
-                    start: date
-                });
-                closeModal();
+        function nextModal() {
+            var eventType = document.getElementById('event-type').value;
+            closeModal('eventModal');
+            if (eventType == 'cita') {
+                openModal('citaModal');
+            } else if (eventType == 'plan') {
+                openModal('planModal');
             }
-        });
-    });
+        }
 
-    function openModal(date) {
-        document.getElementById('date').value = date;
-        document.getElementById('eventModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('eventModal').style.display = 'none';
-    }
-</script>
-
-
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
 
 </x-app-layout>
