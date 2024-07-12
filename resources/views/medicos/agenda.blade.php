@@ -29,11 +29,6 @@
         }
     </style>
 
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         @if (auth()->user()->tipo==="medico")
