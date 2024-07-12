@@ -1,7 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.js"></script>
 
     <x-app-layout >
     <style>
@@ -11,23 +7,46 @@
             padding: 0 10px;
         }
 
-        #eventModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
+        .modal {
+        display: none; /* Oculta el modal por defecto */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semi-transparente */
         }
 
-        #eventModal .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 40px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -49,73 +68,87 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
-<!-- Modal -->
-<div id="eventModal" class="fixed inset-0 flex items-center justify-center">
+<!-- Modal para agregar eventos -->
+<div id="modal-add-event" class="modal">
     <div class="modal-content">
-        <h2 class="text-xl mb-4">Agregar Evento</h2>
-        <form id="eventForm">
-            <div class="mb-4">
-                <label for="title" class="block text-gray-700">Título</label>
-                <input type="text" id="title" name="title" class="w-full px-3 py-2 border rounded">
-            </div>
-            <div class="mb-4">
-                <label for="date" class="block text-gray-700">Fecha</label>
-                <input type="date" id="date" name="date" class="w-full px-3 py-2 border rounded">
-            </div>
-            <div class="flex justify-end">
-                <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal()">Cancelar</button>
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Guardar</button>
-            </div>
+        <span class="close">&times;</span>
+        <h2>Agregar Evento</h2>
+        <form id="add-event-form">
+            <label for="event-type">Seleccione:</label>
+            <select id="event-type" name="event-type">
+                <option value="cita">Cita</option>
+                <option value="plan">Plan</option>
+            </select><br><br>
+
+            <label for="event-title">Título:</label>
+            <input type="text" id="event-title" name="event-title"><br><br>
+            <label for="event-date">Fecha:</label>
+            <input type="date" id="event-date" name="event-date"><br><br>
+            <!-- Campo oculto para almacenar la fecha seleccionada -->
+            <input type="hidden" id="selected-date" name="selected-date">
+            <button type="submit" class="px-4 py-2 bg-black text-white rounded">Agregar Evento</button>
+            <button class="px-4 py-2 bg-gray-500 text-white rounded">Cancelar</button>
         </form>
     </div>
 </div>
 
+<!-- FullCalendar JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            locale: 'es',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            editable: true,
+            selectable: true,
+            eventClick: function(info) {
+                // Aquí podrías abrir un modal para editar el evento
+                console.log('Evento clickeado:', info.event);
             },
             dateClick: function(info) {
-                openModal(info.dateStr);
+                // Al hacer clic en una fecha, abre el modal para agregar evento
+                showModal();
+                // Rellena el campo de fecha con la fecha seleccionada
+                document.getElementById('event-date').value = info.dateStr;
+                document.getElementById('selected-date').value = info.dateStr; // Actualiza el campo oculto
             }
         });
-
         calendar.render();
 
-        document.getElementById('eventForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var title = document.getElementById('title').value;
-            var date = document.getElementById('date').value;
+        // Función para mostrar el modal
+        function showModal() {
+            var modal = document.getElementById('modal-add-event');
+            modal.style.display = 'block';
+        }
 
-            if (title && date) {
-                calendar.addEvent({
-                    title: title,
-                    start: date
-                });
-                closeModal();
-            }
+        // Función para cerrar el modal al hacer clic en la "x"
+        var closeBtn = document.getElementsByClassName('close')[0];
+        closeBtn.onclick = function() {
+            var modal = document.getElementById('modal-add-event');
+            modal.style.display = 'none';
+        };
+
+        // Evento para agregar evento al enviar el formulario
+        document.getElementById('add-event-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var title = document.getElementById('event-title').value;
+            var date = document.getElementById('selected-date').value; // Obtiene la fecha del campo oculto
+            // Agregar el evento al calendario
+            calendar.addEvent({
+                title: title,
+                start: date,
+                allDay: true // Evento de todo el día
+            });
+            // Cierra el modal después de agregar el evento
+            var modal = document.getElementById('modal-add-event');
+            modal.style.display = 'none';
+            // Limpiar los campos del formulario
+            document.getElementById('event-title').value = '';
+            document.getElementById('event-date').value = '';
         });
     });
-
-    function openModal(date) {
-        document.getElementById('date').value = date;
-        document.getElementById('eventModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('eventModal').style.display = 'none';
-    }
 </script>
-
 
 
 </x-app-layout>
