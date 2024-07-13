@@ -36,8 +36,8 @@ Route::get('/agenda', function () {
     return view('agenda.agenda');
 })->middleware(['auth', 'verified'])->name('agenda');
 
-//Route::post('/agregar-evento', [EventController::class, 'store'])->name('agenda.store');
-//Route::post('/borrar-evento', [EventController::class, 'destroy'])->name('agenda.destroy');
+Route::get('/medicos/agenda', [AgendaController::class, 'index'])->name('medicos.agenda');
+Route::post('/medicos/agenda', [AgendaController::class, 'store'])->name('medicos.agenda.store');
 
 Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['auth', 'verified'])->name('servicios');
 

@@ -5,58 +5,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use App\Models\Medico;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
 {
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'medico_id' => 'required|exists:medicos,id',
-            'paciente' => 'required|string',
-        ]);
-
-        $agenda = Agenda::create($validated);
-
-        return response()->json(['success' => true, 'agenda' => $agenda]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'title' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date|after:start',
-            'medico_id' => 'required|exists:medicos,id',
-            'paciente' => 'required|string',
-        ]);
-
-        $agenda = Agenda::findOrFail($id);
-        $agenda->update($validated);
-
-        return response()->json(['success' => true, 'agenda' => $agenda]);
-    }
-
-    public function destroy($id)
-    {
-        $agenda = Agenda::findOrFail($id);
-        $agenda->delete();
-
-        return response()->json(['success' => true]);
-    }
-
     public function index()
     {
-        $agendas = Agenda::with('medico')->get();
-        return response()->json($agendas);
+        $pacientes = Paciente::all();
+        dd($pacientes); // Verifica que se están obteniendo los pacientes
+        $medicos = Medico::all();
+    
+        return view('medicos.agenda', compact('pacientes', 'medicos'));
+    }
+    
+    public function store(Request $request)
+    {
+
+        // Crear el evento
+        Agenda::create($validatedData);
+
+        return redirect()->route('medicos.agenda')->with('success', 'Evento agregado exitosamente.');
     }
 
-    public function medicoList()
-    {
-        $medicos = Medico::all();
-        return response()->json($medicos);
-    }
 }

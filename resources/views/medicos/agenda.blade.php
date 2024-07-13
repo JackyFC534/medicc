@@ -94,14 +94,18 @@
                     </div>
                     <select id="paciente" name="paciente" class="w-full px-3 py-2 border rounded" required>
                         <option value="" disabled selected>Seleccione el paciente...</option>
-                        <option value="paciente 1">paciente 1</option>
+                        <!-- foreach($pacientes as $paciente)
+                            <option value=" paciente->id "> paciente->nombres paciente->apellidos </option>
+                         endforeach -->
                     </select>
                 </div>
                 <div class="mb-4">
                     <label for="medico" class="block text-gray-700">Nombre del medico</label>
                     <select id="medico" name="medico" class="w-full px-3 py-2 border rounded" required>
                         <option value="" disabled selected>Seleccione el medico...</option>
-                        <option value="medico 1">medico 1</option>
+                        <!-- foreach($medicos as $medico)
+                        <option value=" medico->id "> medico->nombres medico->apellidos  </option>
+                        endforeach -->
                     </select>
                 </div>
                 <div class="mb-4">
