@@ -27,6 +27,18 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
+        #boton {
+            display: inline-block;
+            padding: 2px 2px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 15px;
+        }
     </style>
 
     <x-slot name="header">
@@ -57,8 +69,8 @@
                 <div class="mb-4">
                     <label for="event-type" class="block text-gray-700">Tipo de evento</label>
                     <select id="event-type" name="event-type" class="w-full px-3 py-2 border rounded">
-                        <option value="" disabled selected>Seleccione el evento...</option>
-                        <option value="cita">Cita</option>
+                    <option value="" disabled selected>Seleccione el evento...</option>
+                    <option value="cita">Cita de un paciente</option>
                         <option value="plan">Plan</option>
                     </select>
                 </div>
@@ -76,7 +88,10 @@
             <h2 class="text-xl mb-4">Agregar una cita de paciente</h2>
             <form id="citaForm">
                 <div class="mb-4">
-                    <label for="paciente" class="block text-gray-700">Nombre del paciente</label>
+                    <div class="grid gap-6 mb-2 md:grid-cols-2">
+                        <label for="paciente" class="block text-gray-700">Nombre del paciente</label>
+                        <a href="{{ route('pacientes.create') }}" id="boton" class=" bg-blue-500 text-white rounded">Nuevo</a>
+                    </div>
                     <select id="paciente" name="paciente" class="w-full px-3 py-2 border rounded" required>
                         <option value="" disabled selected>Seleccione el paciente...</option>
                         <option value="paciente 1">paciente 1</option>
@@ -94,10 +109,9 @@
                     <input type="date" id="cita-date" name="cita-date" class="w-full px-3 py-2 border rounded" readonly>
                 </div>
                 <div class="mb-4">
-                    <label for="hora" class="block text-gray-700">Hora de la cita</label>
-                    <select id="hora" name="hora" class="w-full px-3 py-2 border rounded" required>
+                    <label for="hora_cita" class="block text-gray-700">Hora de la cita</label>
+                    <select id="hora_cita" name="hora_cita" class="w-full px-3 py-2 border rounded" required>
                         <option value="" disabled selected>Seleccione la hora...</option>
-                        <option value="hora 1">hora 1</option>
                     </select>
                 </div>
                 <div class="mb-4"> <!-- MOTIVO -->
@@ -122,12 +136,20 @@
             <h2 class="text-xl mb-4">Agregar Plan</h2>
             <form id="planForm">
                 <div class="mb-4">
-                    <label for="plan-title" class="block text-gray-700">Título</label>
+                    <label for="plan-title" class="block text-gray-700">Nombre del plan</label>
                     <input type="text" id="plan-title" name="plan-title" class="w-full px-3 py-2 border rounded">
                 </div>
                 <div class="mb-4">
                     <label for="plan-date" class="block text-gray-700">Fecha</label>
-                    <input type="date" id="plan-date" name="plan-date" class="w-full px-3 py-2 border rounded">
+                    <input type="date" id="plan-date" name="plan-date" class="w-full px-3 py-2 border rounded" readonly>
+                </div>
+                <div class="mb-4">
+                    <label for="hora_plan" class="block text-gray-700">Hora del plan</label>
+                    <input type="text" id="hora_plan" name="hora_plan" class="w-full px-3 py-2 border rounded">
+                </div>
+                <div class="mb-4"> <!-- Detalles -->
+                    <label for="detalles" class="block text-gray-700">Detalles</label>
+                    <textarea id="detalles" name="detalles" class="w-full px-3 py-2 border rounded h-32 resize-none"></textarea>
                 </div>
                 <div class="flex justify-end">
                     <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" onclick="closeModal('planModal')">Cancelar</button>
@@ -139,74 +161,115 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var today = new Date().toISOString().split('T')[0]; // Fecha de hoy en formato YYYY-MM-DD
+        var calendarEl = document.getElementById('calendar');
+        var today = new Date().toISOString().split('T')[0]; // Fecha de hoy en formato YYYY-MM-DD
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'es',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                validRange: {
-                    start: today // No permitir fechas anteriores a hoy
-                },
-                dateClick: function(info) {
-                    if (info.dateStr >= today) {
-                        openModal('eventModal');
-                        document.getElementById('cita-date').value = info.dateStr;
-                        document.getElementById('plan-date').value = info.dateStr;
-                    }
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'es',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            validRange: {
+                start: today // No permitir fechas anteriores a hoy
+            },
+            dateClick: function(info) {
+                if (info.dateStr >= today) {
+                    openModal('eventModal');
+                    document.getElementById('cita-date').value = info.dateStr;
+                    document.getElementById('plan-date').value = info.dateStr;
                 }
-            });
-            calendar.render();
+            }
+        });
+        calendar.render();
 
-            document.getElementById('citaForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var title = document.getElementById('cita-title').value;
-                var date = document.getElementById('cita-date').value;
-                if (title && date) {
-                    calendar.addEvent({
-                        title: title,
-                        start: date
-                    });
-                    closeModal('citaModal');
-                }
-            });
+        const select = document.getElementById('hora_cita');
+        const start = 8.5; // 8:30 AM
+        const end = 14.5; // 2:30 PM
 
-            document.getElementById('planForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var title = document.getElementById('plan-title').value;
-                var date = document.getElementById('plan-date').value;
-                if (title && date) {
-                    calendar.addEvent({
-                        title: title,
-                        start: date
-                    });
-                    closeModal('planModal');
-                }
-            });
+        for (let time = start; time <= end; time += 0.5) {
+            const option = document.createElement('option');
+            option.value = formatTime(time);
+            option.textContent = formatTime(time);
+            select.appendChild(option);
+        }
+
+        function formatTime(decimalTime) {
+            const hours = Math.floor(decimalTime);
+            const minutes = (decimalTime % 1) * 60;
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours > 12 ? hours - 12 : hours;
+            return `${formattedHours}:${minutes === 0 ? '00' : '30'} ${period}`;
+        }
+
+        document.getElementById('citaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var title = document.getElementById('paciente').value + " - " + document.getElementById('medico').value;
+            var date = document.getElementById('cita-date').value;
+            if (title && date) {
+                calendar.addEvent({
+                    title: title,
+                    start: date
+                });
+                closeModal('citaModal');
+            }
         });
 
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function nextModal() {
-            var eventType = document.getElementById('event-type').value;
-            closeModal('eventModal');
-            if (eventType == 'cita') {
-                openModal('citaModal');
-            } else if (eventType == 'plan') {
-                openModal('planModal');
+        document.getElementById('planForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var title = document.getElementById('plan-title').value;
+            var date = document.getElementById('plan-date').value;
+            if (title && date) {
+                calendar.addEvent({
+                    title: title,
+                    start: date
+                });
+                closeModal('planModal');
             }
-        }
+        });
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
+        document.getElementById('pacienteForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var nombrePaciente = document.getElementById('nombre-paciente').value;
+            if (nombrePaciente) {
+                var selectPaciente = document.getElementById('paciente');
+                var option = document.createElement('option');
+                option.value = nombrePaciente;
+                option.textContent = nombrePaciente;
+                selectPaciente.appendChild(option);
+                closeModal('pacienteModal');
+            }
+        });
+    });
+
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    function nextModal() {
+        var eventType = document.getElementById('event-type').value;
+        closeModal('eventModal');
+        if (eventType == 'cita') {
+            openModal('citaModal');
+        } else if (eventType == 'plan') {
+            openModal('planModal');
         }
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+        resetForm(modalId);
+    }
+
+    function resetForm(modalId) {
+        var form = document.querySelector(`#${modalId} form`);
+        if (form) {
+            form.reset();
+        }
+    }
+
     </script>
 
 </x-app-layout>
