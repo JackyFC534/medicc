@@ -16,6 +16,38 @@ class PacienteController extends Controller
         return view('pacientes.crud', compact('pacientes'));
     }
 
+    public function show($id)
+    {
+        // Obtener todos los pacientes de la base de datos
+        $paciente = Paciente::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('pacientes.view', compact('paciente'));
+    }
+
+    public function edit($id)
+    {
+        // Obtener todos los pacientes de la base de datos
+        $paciente = Paciente::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('pacientes.edit', compact('paciente'));
+    }
+
+    public function update(Request $request, $id){
+        // Encuentra el paciente por su ID
+        $paciente = Paciente::findOrFail($id);
+
+        // Verifica si el paciente existe
+        if ($paciente) {
+            // Actualiza los datos del paciente
+            $paciente->update($request->all());
+
+            // Redirige a la lista de pacientes con un mensaje de éxito
+            return redirect()->route('pacientes')->with('success', 'Paciente actualizado exitosamente.');
+        } else {
+            return redirect()->route('pacientes')->with('error', 'Paciente no encontrado.');
+        }
+    }
+
     public function create()
     {
         return view('pacientes.new'); // Pasar los pacientes a la vista

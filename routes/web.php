@@ -18,6 +18,9 @@ Route::get('/pacientes', [PacienteController::class, 'index'])->middleware(['aut
 
 Route::get('/pacientes/create', [PacienteController::class, 'create'])->middleware(['auth', 'verified'])->name('pacientes.create');
 Route::post('/pacientes/store', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('pacientes.store');
+Route::get('/pacientes/view/{id}', [PacienteController::class, 'show'])->middleware(['auth', 'verified'])->name('pacientes.show');
+Route::get('/pacientes/edit/{id}', [PacienteController::class, 'edit'])->middleware(['auth', 'verified'])->name('pacientes.edit');
+Route::put('/pacientes/update/{id}', [PacienteController::class, 'update'])->middleware(['auth', 'verified'])->name('pacientes.update');
 Route::delete('/pacientes/{id}', [PacienteController::class, 'destroy'])->middleware(['auth', 'verified'])->name('pacientes.destroy');
 
 Route::get('/nuevo_medico', function () {
@@ -26,6 +29,9 @@ Route::get('/nuevo_medico', function () {
 
 Route::get('/medicos', [MedicoController::class, 'index'])->middleware(['auth', 'verified'])->name('medicos');
 Route::post('/nuevo_medico', [MedicoController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
+Route::get('/medicos/view/{id}', [MedicoController::class, 'show'])->middleware(['auth', 'verified'])->name('medicos.show');
+Route::get('/medicos/edit/{id}', [MedicoController::class, 'edit'])->middleware(['auth', 'verified'])->name('medicos.edit');
+Route::put('/medicos/update/{id}', [MedicoController::class, 'update'])->middleware(['auth', 'verified'])->name('medicos.update');
 Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('medicos.destroy');
 
 Route::get('/medicos_agenda', function () {

@@ -109,11 +109,11 @@
                                         <td>{{ $paciente->correo }}</td>
                                         <td>{{ $paciente->telefono }}</td>
                                         <td>
-                                            <a href="{{ route('pacientes.create', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            <a href="{{ route('pacientes.show', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
                                             </a>
-                                            <!-- hacer funcion edit-->
-                                            <a href="{{ route('pacientes.create', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                            
+                                            <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                             </a>
                                             @if (auth()->user()->tipo==="admin")

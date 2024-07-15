@@ -11,11 +11,43 @@ class MedicoController extends Controller
     public function index()
     {
 
-        // Obtener todos los pacientes de la base de datos
+        // Obtener todos los medicos de la base de datos
         $medicos = Medico::all();
         
         // Pasar los datos a la vista
         return view('medicos.crud', compact('medicos'));
+    }
+
+    public function show($id)
+    {
+        // Obtener todos los medicos de la base de datos
+        $medico = Medico::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('medicos.view', compact('medico'));
+    }
+
+    public function edit($id)
+    {
+        // Obtener todos los medicos de la base de datos
+        $medico = Medico::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('medicos.edit', compact('medico'));
+    }
+
+    public function update(Request $request, $id){
+        // Encuentra el paciente por su ID
+        $medico = Medico::findOrFail($id);
+
+        // Verifica si el paciente existe
+        if ($medico) {
+            // Actualiza los datos del medico
+            $medico->update($request->all());
+
+            // Redirige a la lista de medicos con un mensaje de éxito
+            return redirect()->route('medicos')->with('success', 'Medico actualizado exitosamente.');
+        } else {
+            return redirect()->route('medicos')->with('error', 'Medico no encontrado.');
+        }
     }
 
     public function store(Request $request)
