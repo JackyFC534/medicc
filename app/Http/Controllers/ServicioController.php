@@ -39,9 +39,12 @@ class ServicioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Servicio $servicio)
+    public function show($id)
     {
-        //
+        // Obtener todos los servicios de la base de datos
+        $servicio = Servicio::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('servicios.view', compact('servicio'));
     }
 
     /**
