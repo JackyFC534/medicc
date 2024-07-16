@@ -50,6 +50,9 @@ Route::get('/servicios', [ServicioController::class, 'index'])->middleware(['aut
 Route::get('/servicios/create', [ServicioController::class, 'create'])->middleware(['auth', 'verified'])->name('servicios.create');
 Route::post('/servicios/store', [ServicioController::class, 'store'])->middleware(['auth', 'verified'])->name('servicios.store');
 Route::get('/servicios/view/{id}', [ServicioController::class, 'show'])->middleware(['auth', 'verified'])->name('servicios.show');
+Route::get('/servicios/edit/{id}', [ServicioController::class, 'edit'])->middleware(['auth', 'verified'])->name('servicios.edit');
+Route::put('/servicios/update/{id}', [ServicioController::class, 'update'])->middleware(['auth', 'verified'])->name('servicios.update');
+
 Route::delete('/servicios/{id}', [ServicioController::class, 'destroy'])->middleware(['auth', 'verified'])->name('servicios.destroy');
 
 

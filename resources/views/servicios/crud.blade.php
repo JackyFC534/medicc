@@ -88,11 +88,11 @@
                                     <td>${{ $servicio->precio }}</td>
                                     <td>{{ $servicio->tipo }}</td>
                                     <td>
-                                        <a href="{{ route('servicios.create', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        <a href="{{ route('servicios.show', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
                                         </a>
-                                            <!-- hacer funcion edit-->
-                                        <a href="{{ route('servicios.create', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        
+                                        <a href="{{ route('servicios.edit', $servicio->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                         </a>
                                         <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline;">

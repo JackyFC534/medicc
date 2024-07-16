@@ -63,7 +63,7 @@
                                 <input type="text" value="{{ $medico->cedula_profesional }}" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="020203320" required />
                             </div>
                             </div>
-                            <button type="submit" id="boton" style="width: 105px">Guardar</button>
+                            <button type="submit" id="boton" style="width: 105px">Actualizar</button>
                             <a href="{{ route('medicos') }}" id="boton" style="width: 105px">Cancelar</a>
 
                         </div>

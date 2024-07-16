@@ -73,7 +73,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" id="boton" style="width: 105px">Submit</button>
+                        <button type="submit" id="boton" style="width: 105px">Guardar</button>
                         <a href="{{ route('pacientes') }}" id="boton" style="width: 105px">Cancelar</a>
                     </form>
 

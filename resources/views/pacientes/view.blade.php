@@ -18,7 +18,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ver datos paciente') }}
+            {{ __('Ver datos del paciente') }}
         </h2>
     </x-slot>
 

@@ -64,7 +64,7 @@
                                 <input type="text" value="{{ $paciente->notas }}" id="notas" name="notas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                             </div>
                         </div>
-                        <button type="submit" id="boton" style="width: 105px">Submit</button>
+                        <button type="submit" id="boton" style="width: 105px">Actualizar</button>
                         <a href="{{ route('pacientes') }}" id="boton" style="width: 105px">Regresar</a>
                     </form>
 

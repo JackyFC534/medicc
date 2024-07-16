@@ -50,17 +50,32 @@ class ServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Servicio $servicio)
+    public function edit($id)
     {
-        //
+        // Obtener todos los servicios de la base de datos
+        $servicio = Servicio::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('servicios.edit', compact('servicio'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Servicio $servicio)
-    {
-        //
+    public function update(Request $request, $id){
+        // Encuentra el paciente por su ID
+        $servicio = Servicio::findOrFail($id);
+
+        // Verifica si el paciente existe
+        if ($servicio) {
+            // Actualiza los datos del servicio
+            $servicio->update($request->all());
+
+            // Redirige a la lista de servicios con un mensaje de éxito
+            return redirect()->route('servicios')->with('success', 'Servicio actualizado exitosamente.');
+        } else {
+            return redirect()->route('servicios')->with('error', 'Servicio no encontrado.');
+        }
     }
 
     /**
