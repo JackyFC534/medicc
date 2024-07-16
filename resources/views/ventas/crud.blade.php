@@ -73,12 +73,7 @@
                         <table class="tabla">
                             <thead>
                                 <tr>
-                                    <th scope="col">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                        </div>
-                                    </th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Cliente</th>
                                     <th scope="col">Producto</th>
@@ -90,23 +85,18 @@
                             <tbody>
                             @foreach ($ventas as $venta)
                                 <tr>
-                                    <td>
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
+                                    <td class="font-medium">{{ $loop->iteration }}</td>
                                     <td>{{ $venta->fecha }}</td>
                                     <td>{{ $venta->cliente }}</td>
                                     <td>{{ $venta->producto }}</td>
                                     <td>{{ $venta->cantidad }}</td>
                                     <td>${{ $venta->total }}</td>
                                     <td>
-                                        <a href="{{ route('ventas.create', $venta->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        <a href="{{ route('ventas.show', $venta->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
                                         </a>
                                             <!-- hacer funcion edit-->
-                                        <a href="{{ route('ventas.create', $venta->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        <a href="{{ route('ventas.edit', $venta->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                         </a>
                                         @if (auth()->user()->tipo==="admin")

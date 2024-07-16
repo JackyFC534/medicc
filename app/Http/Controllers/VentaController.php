@@ -39,25 +39,43 @@ class VentaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Venta $venta)
+    public function show($id)
     {
-        //
+        // Obtener todos los ventas de la base de datos
+        $venta = Venta::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('ventas.view', compact('venta'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Venta $venta)
+    public function edit($id)
     {
-        //
+        // Obtener todos los ventas de la base de datos
+        $venta = Venta::findOrFail($id);
+        // Pasar los datos a la vista
+        return view('ventas.edit', compact('venta'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, $id)
     {
-        //
+        // Encuentra el venta por su ID
+        $venta = Venta::findOrFail($id);
+
+        // Verifica si el venta existe
+        if ($venta) {
+            // Actualiza los datos del venta
+            $venta->update($request->all());
+
+            // Redirige a la lista de ventas con un mensaje de éxito
+            return redirect()->route('ventas')->with('success', 'venta actualizado exitosamente.');
+        } else {
+            return redirect()->route('ventas')->with('error', 'venta no encontrado.');
+        }
     }
 
     /**

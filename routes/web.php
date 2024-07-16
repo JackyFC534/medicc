@@ -86,9 +86,11 @@ Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->middle
 // VENTAS
 
 Route::get('/ventas', [VentaController::class, 'index'])->middleware(['auth', 'verified'])->name('ventas');
-
 Route::get('/ventas/create', [VentaController::class, 'create'])->middleware(['auth', 'verified'])->name('ventas.create');
 Route::post('/ventas/store', [VentaController::class, 'store'])->middleware(['auth', 'verified'])->name('ventas.store');
+Route::get('/ventas/view/{id}', [VentaController::class, 'show'])->middleware(['auth', 'verified'])->name('ventas.show');
+Route::get('/ventas/edit/{id}', [VentaController::class, 'edit'])->middleware(['auth', 'verified'])->name('ventas.edit');
+Route::put('/ventas/update/{id}', [VentaController::class, 'update'])->middleware(['auth', 'verified'])->name('ventas.update');
 Route::delete('/ventas/{id}', [VentaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ventas.destroy');
 
 

@@ -63,7 +63,7 @@ class ProductoController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */
+     */ 
     public function create()
     {
         return view('productos.new'); // Pasar los pacientes a la vista
