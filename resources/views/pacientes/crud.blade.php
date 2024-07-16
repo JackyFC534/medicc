@@ -80,7 +80,6 @@
                                     <th scope="col">Apellido(s)</th>
                                     <th scope="col">Edad</th>
                                     <th scope="col">Género</th>
-
                                     <th scope="col">Correo</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Acción</th>

@@ -32,7 +32,8 @@ class PacienteController extends Controller
         return view('pacientes.edit', compact('paciente'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         // Encuentra el paciente por su ID
         $paciente = Paciente::findOrFail($id);
 

@@ -27,7 +27,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form method="POST" action="#" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('productos.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
@@ -43,19 +43,19 @@
                                 <input type="number" id="lote" name="lote" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12345" required />
                             </div>
                             <div>
-                                <label for="caducidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Caducidad</label>
-                                <input type="date" id="caducidad" name="caducidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                                <label for="fecha_caducidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Caducidad</label>
+                                <input type="date" id="fecha_caducidad" name="fecha_caducidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
                             </div> 
                             <div>
                                 <label for="existencias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Existencias</label>
                                 <input type="number" id="existencias" name="existencias" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="10" required />
                             </div> 
                             <div>
-                                <label for="precio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio unitario</label>
-                                <input type="number" id="precio" name="precio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                                <label for="precio_unitario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio unitario</label>
+                                <input type="number" id="precio_unitario" name="precio_unitario" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                             </div> 
                             </div>
-                            <button type="submit" id="boton" style="width: 105px">Submit</button>
+                            <button type="submit" id="boton" style="width: 105px">Guardar</button>
                             <a href="{{ route('productos') }}" id="boton" style="width: 105px">Cancelar</a>
                         </div>
                     </form>

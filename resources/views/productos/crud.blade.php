@@ -66,20 +66,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('nuevo_producto') }}" id="boton">Agregar Producto</a>
+                    <a href="{{ route('productos.create') }}" id="boton">Agregar Producto</a>
                     <br><br>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="tabla">
                             <thead>
                                 <tr>
-                                    <th scope="col">
-                                        <div class="flex items-center">
-                                            <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                        </div>
-                                    </th>
-                                    <th scope="col">Id</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Descripción</th>
                                     <th scope="col">Lote</th>
@@ -90,32 +84,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($productos as $producto)
                                 <tr>
+                                    <td class="font-medium">{{ $loop->iteration }}</td>
+                                    <td>{{ $producto->nombre }}</td>
+                                    <td>{{ $producto->descripcion }}</td>
+                                    <td>{{ $producto->lote }}</td>
+                                    <td>{{ $producto->fecha_caducidad }}</td>
+                                    <td>{{ $producto->existencias }}</td>
+                                    <td>${{ $producto->precio_unitario }}</td>
                                     <td>
-                                        <div class="flex items-center">
-                                            <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                        </div>
-                                    </td>
-                                    <td class="font-medium">1</td>
-                                    <td>Aspirina</td>
-                                    <td>Pastilla de 100gr</td>
-                                    <td>186287</td>
-                                    <td>09/10/2025</td>
-                                    <td>35</td>
-                                    <td>$100</td>
-                                    <td>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        <a href="{{ route('productos.show', $producto->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/ver.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                        </a>
+                                        <a href="{{ route('productos.edit', $producto->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                             <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
-                                        </button>
-                                        <button class="boton-con-imagen-interna" style="width: 35px; height: 37px">
-                                            <img src="{{ asset('images/delete.png') }}" style="width: 25px">
-                                        </button>
+                                        </a>
+                                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
+                                                <img src="{{ asset('images/delete.png') }}" style="width: 25px">
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
