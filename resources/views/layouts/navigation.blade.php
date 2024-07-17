@@ -21,8 +21,9 @@
                             {{ __('Medicos') }}
                         </x-nav-link>
                     </div>
+                    
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('medicos_agenda')" :active="request()->routeIs('medicos_agenda')">
+                        <x-nav-link :href="route('agenda')" :active="request()->routeIs('agenda')">
                             {{ __('Agenda') }}
                         </x-nav-link>
                     </div>
@@ -125,7 +126,7 @@
                                 <x-dropdown-link :href="route('medicos')">
                                     {{ __('Medicos') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('medicos_agenda')">
+                                <x-dropdown-link :href="route('agenda')">
                                     {{ __('Agenda Médicos') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -200,7 +201,7 @@
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('medicos_agenda')" :active="request()->routeIs('medicos_agenda')">
+                        <x-nav-link :href="route('agenda')" :active="request()->routeIs('agenda')">
                             {{ __('Agenda') }}
                         </x-nav-link>
                     </div>
@@ -259,7 +260,7 @@
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('medicos_agenda')" :active="request()->routeIs('agenda')">
+                        <x-nav-link :href="route('agenda')" :active="request()->routeIs('agenda')">
                             {{ __('Agenda') }}
                         </x-nav-link>
                     </div>

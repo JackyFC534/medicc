@@ -12,20 +12,19 @@ class AgendaController extends Controller
 {
     public function index()
     {
+        // Obtener todos los pacientes y médicos de la base de datos
         $pacientes = Paciente::all();
-        dd($pacientes); // Verifica que se están obteniendo los pacientes
         $medicos = Medico::all();
     
-        return view('medicos.agenda', compact('pacientes', 'medicos'));
+        return view('agenda.agenda', compact('pacientes', 'medicos'));
     }
     
     public function store(Request $request)
     {
-
         // Crear el evento
         Agenda::create($validatedData);
 
-        return redirect()->route('medicos.agenda')->with('success', 'Evento agregado exitosamente.');
+        return redirect()->route('agenda.agenda')->with('success', 'Evento agregado exitosamente.');
     }
 
 }
