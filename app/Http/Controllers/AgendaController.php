@@ -21,10 +21,20 @@ class AgendaController extends Controller
     
     public function store(Request $request)
     {
-        // Crear el evento
-        Agenda::create($validatedData);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'paciente_id' => 'nullable|exists:pacientes,id',
+            'medico_id' => 'nullable|exists:medicos,id',
+            'event_type' => 'required|in:cita,plan',
+            'date' => 'required|date',
+            'hora' => 'nullable|date_format:H:i',
+            'motivo' => 'nullable|string',
+            'detalles' => 'nullable|string',
+        ]);
 
-        return redirect()->route('agenda.agenda')->with('success', 'Evento agregado exitosamente.');
+        Agenda::create($validated);
+
+        return response()->json(['success' => true]);
     }
 
 }
