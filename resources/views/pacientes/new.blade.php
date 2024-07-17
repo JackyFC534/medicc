@@ -67,12 +67,14 @@
                                 <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
                                 <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" required />
                             </div>
+                        </div>
+                            <!-- como hacer que sea opcional ponerle algo? -->
                             <div>
                                 <label for="notas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notas</label>
                                 <input type="text" id="notas" name="notas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                             </div>
-                        </div>
 
+                            <br>
                         <button type="submit" id="boton" style="width: 105px">Guardar</button>
                         <a href="{{ route('pacientes') }}" id="boton" style="width: 105px">Cancelar</a>
                     </form>
@@ -81,4 +83,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('fecha_nacimiento');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('max', today);
+        });
+    </script>
 </x-app-layout>

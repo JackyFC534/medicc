@@ -34,37 +34,10 @@
                                 <label for="cliente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente</label>
                                 <select id="cliente" name="cliente" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                     <option value="" disabled selected>Selecciona el cliente</option>
-                                    @foreach($pacientes as $paciente)
-                                    <option value="{{ $paciente->id}}">{{ $paciente-> nombres }} {{ $paciente-> apellidos }}  || {{ $paciente-> telefono}}</option>
-                                    @endforeach
-
-                                    @foreach($medicos as $medico)
-                                    <option value="{{ $medico->id}}">   {{ $medico-> nombres }} {{ $medico-> apellidos }}  || {{ $medico-> telefono}}</option>
-                                    @endforeach
+                                    <option value="cliente 1">Cliente 1</option>
+                                    <option value="Cliente 2">Cliente 2</option>
                                 </select>
                             </div>
-                            <div class="flex flex-col space-y-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="opciones[]" value="opcion1" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-white">Opción 1</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="opciones[]" value="opcion2" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-white">Opción 2</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="opciones[]" value="opcion3" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-white">Opción 3</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="opciones[]" value="opcion4" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-white">Opción 4</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="opciones[]" value="opcion5" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-white">Opción 5</span>
-                        </label>
-                    </div>
                             <div>
                                 <label for="fecha" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha del pago</label>
                                 <input type="date" id="fecha" name="fecha" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
@@ -106,12 +79,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dateInput = document.getElementById('fecha');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('max', today);
-    });
-</script>
 </x-app-layout>

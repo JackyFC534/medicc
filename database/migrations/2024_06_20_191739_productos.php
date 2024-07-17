@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('fecha_caducidad');
             $table->integer('existencias');
             $table->float('precio_unitario');
+            $table->enum('estatus_pago',['pagado','pendiente','cancelado'])->nullable();
             $table->timestamps();
         });
     }

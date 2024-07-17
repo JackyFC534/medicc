@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_paciente');
-            $table->integer('id_servicio')->unique();
-            $table->float('total_pago');
+            $table->foreignId('id_venta')->nullable()->constrained()->onDelete('cascade');
+            $table->float('monto');
             $table->date('fecha');
-            $table->string('status');
+            $table->enum('estatus_pago',['pagado','pendiente','cancelado'])->nullable();
+            $table->enum('metodo_pago',['efectivo','credito','debito','transferencia'])->nullable();
+
         });
     }
 

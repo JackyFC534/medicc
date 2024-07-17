@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('cliente');
-            $table->string('producto');
+            $table->foreignId('id_cliente')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('id_producto')->nullable()->constrained()->onDelete('cascade');
             $table->float('cantidad');
             $table->float('total');
             $table->timestamps();

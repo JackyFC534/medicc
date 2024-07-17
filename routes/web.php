@@ -7,6 +7,8 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\PagosController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -98,13 +100,14 @@ Route::delete('/ventas/{id}', [VentaController::class, 'destroy'])->middleware([
 
 // PAGOS
 
-Route::get('/pagos', function () {
-    return view('pagos.crud');
-})->middleware(['auth', 'verified'])->name('pagos');
+Route::get('/pagos', [PagosController::class, 'index'])->middleware(['auth', 'verified'])->name('pagos');
+Route::get('/pagos/create', [PagosController::class, 'create'])->middleware(['auth', 'verified'])->name('pagos.create');
+Route::post('/pagos/store', [PagosController::class, 'store'])->middleware(['auth', 'verified'])->name('pagos.store');
+Route::get('/pagos/view/{id}', [PagosController::class, 'show'])->middleware(['auth', 'verified'])->name('pagos.show');
+Route::get('/pagos/edit/{id}', [PagosController::class, 'edit'])->middleware(['auth', 'verified'])->name('pagos.edit');
+Route::put('/pagos/update/{id}', [PagosController::class, 'update'])->middleware(['auth', 'verified'])->name('pagos.update');
+Route::delete('/pagos/{id}', [PagosController::class, 'destroy'])->middleware(['auth', 'verified'])->name('pagos.destroy');
 
-Route::get('/nuevo_pago', function () {
-    return view('pagos.new');
-})->middleware(['auth', 'verified'])->name('nuevo_pago');
 
 
 
