@@ -153,6 +153,15 @@
 </div>
 
 <!-- Modal para agregar plan -->
+ 
+<!-- Modal para agregar plan -->
+ 
+<!-- Modal para agregar plan -->
+ 
+<!-- Modal para agregar plan -->
+ 
+<!-- Modal para agregar plan -->
+ 
 <div id="planModal" class="modal fixed inset-0 flex items-center justify-center">
     <div class="modal-content">
         <h2 class="text-xl mb-4">Agregar Plan</h2>
