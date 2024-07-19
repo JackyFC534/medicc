@@ -66,10 +66,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    @if (auth()->user()->tipo==="admin" || auth()->user()->tipo === "secretaria")
-                        <a href="{{ route('pacientes.create') }}" id="boton">Agregar paciente</a>
-                        <br><br>
-                    @endif
+                    
+                    <a href="{{ route('pacientes.create') }}" id="boton">Agregar paciente</a>
+                    <br><br>
+                    
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="tabla">
