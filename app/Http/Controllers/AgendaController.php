@@ -29,14 +29,25 @@ class AgendaController extends Controller
             'hora' => 'required|string',
             'motivo' => 'required|string',
         ]);
-
-        Agenda::create([
+    
+        $cita = Agenda::create([
             'id_paciente' => $request->id_paciente,
             'id_medico' => $request->id_medico,
             'date' => $request->date,
             'hora' => $request->hora,
             'motivo' => $request->motivo,
         ]);
+    
+        // Formatear el evento para FullCalendar
+        $citaEvent = [
+            'id' => $cita->id,
+            'title' => "{$cita->hora} - " . $cita->paciente->nombres . ' ' . $cita->paciente->apellidos,
+            'start' => $cita->date . 'T' . $cita->hora . ':00',
+            'extendedProps' => [
+                'medico' => $cita->medico->nombres . ' ' . $cita->medico->apellidos,
+                'motivo' => $cita->motivo,
+            ],
+        ];
 
         //return response()->json(['message' => 'Evento creado correctamente']);
         return redirect()->route('agenda')->with('success', 'Cita agregada exitosamente.');
@@ -47,7 +58,9 @@ class AgendaController extends Controller
         $cita = Agenda::findOrFail($id);
         $cita->delete();
 
-        return redirect()->route('agenda.agenda')->with('success', 'Cita eliminada exitosamente.');
+        //return redirect()->route('agenda.agenda')->with('success', 'Cita eliminada exitosamente.');
+        return redirect()->route('agenda')->with('success', 'Cita eliminada exitosamente.');
+
     }
 
     public function fetchEvents()
@@ -62,5 +75,24 @@ class AgendaController extends Controller
         $cita = Agenda::with(['paciente', 'medico'])->findOrFail($id);
 
         return response()->json($cita);
+    }
+
+    public function edit($id)
+    {
+        $cita = Agenda::findOrFail($id);
+        return view('agenda', compact('cita'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $cita = Agenda::findOrFail($id);
+
+        if ($cita) {
+            $cita->update($request->all());
+
+            return redirect()->route('agenda')->with('success', 'Cita actualizado exitosamente.');
+        } else {
+            return redirect()->route('agenda')->with('error', 'Cita no encontrado.');
+        }
     }
 }

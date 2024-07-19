@@ -47,7 +47,9 @@ Route::get('/agenda', [AgendaController::class, 'index'])->middleware(['auth', '
 Route::post('/agenda/store', [AgendaController::class, 'store'])->middleware(['auth', 'verified'])->name('agenda.store');
 Route::get('/agenda/events', [AgendaController::class, 'fetchEvents'])->middleware(['auth', 'verified'])->name('agenda.events');
 Route::get('/agenda/{id}', [AgendaController::class, 'fetchEventDetails'])->middleware(['auth', 'verified']);
-
+Route::delete('/agenda/{id}', [AgendaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('agenda.destroy');
+// Ruta para actualizar una cita
+Route::put('/agenda/update/{id}', [AgendaController::class, 'update'])->name('agenda.update');
 
 
 
