@@ -42,16 +42,16 @@
                             {{ __('Ventas') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <!--div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('pagos')" :active="request()->routeIs('pagos')">
                             {{ __('Pagos') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <div-- class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('consultas')" :active="request()->routeIs('consultas')">
                             {{ __('Consultas') }}
                         </x-nav-link>
-                    </div>
+                    </div-->
                 </div>
 
                 <!-- Settings Dropdown -->
@@ -205,11 +205,16 @@
                             {{ __('Agenda') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <!--div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('pagos')" :active="request()->routeIs('pagos')">
+                            {{ __('Pagos') }}
+                        </x-nav-link>
+                    </div>
+                    <div-- class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('consultas')" :active="request()->routeIs('consultas')">
                             {{ __('Consultas') }}
                         </x-nav-link>
-                    </div>
+                    </div-->
                 </div>
 
                 <!-- Settings Dropdown -->
@@ -262,11 +267,6 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('agenda')" :active="request()->routeIs('agenda')">
                             {{ __('Agenda') }}
-                        </x-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('pagos')" :active="request()->routeIs('pagos')">
-                            {{ __('Pagos') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

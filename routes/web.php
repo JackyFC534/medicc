@@ -7,6 +7,8 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ConsultaController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -108,13 +110,10 @@ Route::get('/nuevo_pago', function () {
 
 // CONSULTAS
 
-Route::get('/consultas', function () {
-    return view('consultas.crud');
-})->middleware(['auth', 'verified'])->name('consultas');
 
-Route::get('/nueva_consulta', function () {
-    return view('consultas.new');
-})->middleware(['auth', 'verified'])->name('nueva_consulta');
+Route::get('/consultas', [ConsultaController::class, 'index'])->middleware(['auth', 'verified'])->name('consultas');
+
+Route::get('/consultas/{id}', [ConsultaController::class, 'show'])->middleware(['auth', 'verified'])->name('consultas.paciente');
 
 
 

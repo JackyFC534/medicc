@@ -76,8 +76,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nombre(s)</th>
-                                    <th scope="col">Apellido(s)</th>
+                                    <th scope="col">Nombre Completo</th>
                                     <th scope="col">Edad</th>
                                     <th scope="col">Género</th>
                                     <th scope="col">Correo</th>
@@ -89,8 +88,7 @@
                             @foreach($pacientes as $paciente)
                                     <tr>
                                         <td class="font-medium">{{ $loop->iteration }}</td>
-                                        <td>{{ $paciente->nombres }}</td>
-                                        <td>{{ $paciente->apellidos }}</td>
+                                        <td><a href="{{ route('consultas.paciente', $paciente->id) }}">{{ $paciente->nombres }} {{ $paciente->apellidos }}</a></td>
                                         <td>{{ $paciente->edad }}</td>
                                         <td>{{ $paciente->genero }}</td>
                                         <td>{{ $paciente->correo }}</td>
