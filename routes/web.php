@@ -43,8 +43,11 @@ Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware
 
 // AGENDA
 
-Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
-Route::post('/agenda/store', [AgendaController::class, 'store'])->name('agenda.store');
+Route::get('/agenda', [AgendaController::class, 'index'])->middleware(['auth', 'verified'])->name('agenda');
+Route::post('/agenda/store', [AgendaController::class, 'store'])->middleware(['auth', 'verified'])->name('agenda.store');
+Route::get('/agenda/events', [AgendaController::class, 'fetchEvents'])->middleware(['auth', 'verified'])->name('agenda.events');
+Route::get('/agenda/{id}', [AgendaController::class, 'fetchEventDetails'])->middleware(['auth', 'verified']);
+
 
 
 
