@@ -189,7 +189,7 @@
                         <p><strong>Médico:</strong> ${data.medico.nombres} ${data.medico.apellidos}</p>
                         <p><strong>Motivo:</strong> ${data.motivo}</p>
                         @csrf
-                        <a href="{{ route('consultas.paciente', $paciente->id) }}" style="" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
+                        <a href="/consultas/${data.paciente.id}" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
                         <button id="edit-event" class="mt-4 px-4 py-2 bg-blue-800 text-white rounded" data-event-id="${data.id}">Editar</button>
                         <button id="delete-event" class="mt-4 px-4 py-2 bg-black text-white rounded" data-event-id="${data.id}">Eliminar</button>
 

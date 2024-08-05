@@ -148,53 +148,7 @@
                         <br><br>
                         <a href="{{ route('pagos') }}" id="boton" style="width: 105px">Confirmar</a>
                         <a href="{{ route('consultas') }}" id="boton" style="width: 105px">Cancelar</a>
-                        @if (auth()->user()->tipo==="admin")
-                            <div class="grid gap-6 mb-6 md:grid-cols-2">
-
-                                <div>
-                                    <label for="cliente" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente</label>
-                                    <select id="cliente" name="cliente" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                        <option value="" disabled selected>Selecciona el paciente</option>
-                                        <option value="Paciente 1">Paciente 1</option>
-                                        <option value="Paciente 2">Paciente 2</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="fecha" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de la consulta</label>
-                                    <input type="date" id="fecha" name="fecha" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
-                                </div>
-                                <div>
-                                    <label for="monto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Monto</label>
-                                    <input type="number" id="monto" name="monto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12" required />
-                                </div>
-                                <div>
-                                    <label for="metodo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metodo</label>
-                                    <select id="metodo" name="metodo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                        <option value="" disabled selected>Selecciona el método de pago</option>
-                                        <option value="Efectivo">Efectivo</option>
-                                        <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-                                        <option value="Tarjeta de Débito">Tarjeta de Débito</option>
-                                        <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-                                    </select>                            
-                                </div>  
-                                </div>  
-                                <div>
-                                    <label for="estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-                                    <select id="estado" name="estado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                        <option value="" disabled selected>Selecciona el estado</option>
-                                        <option value="Pendiente">Pendiente</option>
-                                        <option value="Pagado">Pagado</option>
-                                        <option value="Parcial">Pago parcial</option>
-                                        <option value="Cancelado">Cancelado</option>
-                                    </select>     
-                                </div>  
-                                <br>
-                                <button type="submit" id="boton" style="width: 105px">Submit</button>
-                                <a href="{{ route('pagos') }}" id="boton" style="width: 105px">Cancelar</a>
-
-                                </div>
-                            </div>
-                        @endif
+                        
                     </form>
                     
                 </div>

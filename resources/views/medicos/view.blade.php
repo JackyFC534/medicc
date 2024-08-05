@@ -31,28 +31,28 @@
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <label for="nombres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre(s)</label>
-                                <input type="text" value="{{ $medico->nombres }}" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dr. Demo" readonly />
+                                <label for="nombres" class="block mb-2 text-sm font-medium text-gray-900">Nombre(s)</label>
+                                <input type="text" value="{{ $medico->nombres }}" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Dr. Demo" readonly />
                             </div>
                             <div>
-                                <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido(s)</label>
-                                <input type="text" value="{{ $medico->apellidos }}" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User" readonly />
+                                <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900">Apellido(s)</label>
+                                <input type="text" value="{{ $medico->apellidos }}" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="User" readonly />
                             </div>
                             <div>
-                                <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
-                                <input type="text" value="{{ $medico->correo }}" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="demo@neo.com" readonly />
+                                <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
+                                <input type="text" value="{{ $medico->correo }}" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="demo@neo.com" readonly />
                             </div>  
                             <div>
-                                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
-                                <input type="tel" value="{{ $medico->telefono }}" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  readonly />
+                                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
+                                <input type="tel" value="{{ $medico->telefono }}" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678"  readonly />
                             </div>
                             <div>
-                                <label for="especialidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidad</label>
-                                <input id="especialidad" value="{{ $medico->especialidad }}" name="especialidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>                              
+                                <label for="especialidad" class="block mb-2 text-sm font-medium text-gray-900">Especialidad</label>
+                                <input id="especialidad" value="{{ $medico->especialidad }}" name="especialidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" readonly>                              
                             </div>
                             <div>
-                                <label for="cedula_profesional" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cedula profesional</label>
-                                <input type="text" value="{{ $medico->cedula_profesional }}" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="020203320" readonly />
+                                <label for="cedula_profesional" class="block mb-2 text-sm font-medium text-gray-900">Cedula profesional</label>
+                                <input type="text" value="{{ $medico->cedula_profesional }}" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="020203320" readonly />
                             </div>
                             </div>
                             <a href="{{ route('medicos') }}" id="boton" style="width: 105px">Regresar</a>

@@ -31,24 +31,24 @@
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <label for="nombres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre(s)</label>
-                                <input type="text" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dr. Demo" required />
+                                <label for="nombres" class="block mb-2 text-sm font-medium text-gray-900">Nombre(s)</label>
+                                <input type="text" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Dr. Demo" required />
                             </div>
                             <div>
-                                <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido(s)</label>
-                                <input type="text" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User" required />
+                                <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900">Apellido(s)</label>
+                                <input type="text" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="User" required />
                             </div>
                             <div>
-                                <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
-                                <input type="text" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="demo@neo.com" required />
+                                <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
+                                <input type="text" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="demo@neo.com" required />
                             </div>  
                             <div>
-                                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  required />
+                                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678"  required />
                             </div>
                             <div>
-                                <label for="especialidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidad</label>
-                                <select id="especialidad" name="especialidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <label for="especialidad" class="block mb-2 text-sm font-medium text-gray-900">Especialidad</label>
+                                <select id="especialidad" name="especialidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                                     <option value="" disabled selected>Selecciona especialidad</option>
                                     <option value="Medicina_general">Medicina General</option>
                                     <option value="Psiquiatria">Psiquiatría</option>
@@ -58,8 +58,8 @@
                                 </select>                            
                             </div>
                             <div>
-                                <label for="cedula_profesional" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cedula profesional</label>
-                                <input type="text" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="020203320" required />
+                                <label for="cedula_profesional" class="block mb-2 text-sm font-medium text-gray-900">Cedula profesional</label>
+                                <input type="text" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="020203320" required />
                             </div>
                             </div>
                             <button type="submit" id="boton" style="width: 105px">Guardar</button>
