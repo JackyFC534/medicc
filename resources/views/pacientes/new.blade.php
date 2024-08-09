@@ -81,4 +81,31 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fechaNacimientoInput = document.getElementById('fecha_nacimiento');
+            const today = new Date().toISOString().split('T')[0];
+            fechaNacimientoInput.setAttribute('max', today);
+
+            document.getElementById('usuarioForm').addEventListener('submit', function (event) {
+                const fechaNacimiento = new Date(fechaNacimientoInput.value);
+                const todayDate = new Date(today);
+
+                if (fechaNacimiento >= todayDate) {
+                    event.preventDefault();
+                    alert('La fecha de nacimiento debe ser anterior a la fecha actual.');
+                }
+
+                const contraseña = document.getElementById('contraseña').value;
+                const contraseñaConfirm = document.getElementById('contraseña_confirm').value;
+
+                if (contraseña !== contraseñaConfirm) {
+                    event.preventDefault();
+                    alert('Las contraseñas no coinciden. Por favor, verifica y vuelve a intentar.');
+                } 
+            });
+
+        });
+    </script>
 </x-app-layout>

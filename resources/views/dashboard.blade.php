@@ -107,11 +107,11 @@
                                 <div class="p-6 text-gray-900"> 
                                 ¡ Bienvenido doctor <b>{{ Auth::user()->name }} </b>!
                                 <p>Inicia viendo el itinerario de hoy</p>
-                                <a href="{{ route('medicos_agenda') }}" id="boton">Ver Agenda</a>
+                                <a href="{{ route('agenda') }}" id="boton">Ver Agenda</a>
                                 </div>
                             </div>
                         </div>
-                    <!-- Vista Administrador-->
+                    <!-- Vista Secretraria-->
                     @elseif (auth()->user()->tipo==="secretaria")
                         <div class="container">
                             <div class="imagen">
@@ -120,11 +120,10 @@
                         
                             <div class="texto">
                                 <div class="p-6 text-gray-900"> 
-                                ¡ Bienvenido doctor <b>{{ Auth::user()->name }} </b>!
+                                ¡ Bienvenida Secretari <b>{{ Auth::user()->name }} </b>!
                                 <br><br>
                                 <div class="grid gap-6 mb-6 md:grid-cols-3">
                                 <a href="{{ route('pacientes') }}" id="boton" style="width: 110px">Registro paciente</a>
-                                <a href="{{ route('medicos_agenda') }}" id="boton" style="width: 110px">Agendar citas</a>
                                 <a href="{{ route('pagos') }}" id="boton" style="width: 110px">Pagos</a>
                                 </div>
                                 </div>
