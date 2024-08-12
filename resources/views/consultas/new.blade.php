@@ -151,17 +151,28 @@
                             </div>
                         </div>
 
-                        <label for="medicamento" class="block mb-2 text-sm font-medium text-gray-900">Selecciona los productos utilizados:</label><br>
+                        <hr style="border: 1px solid #1;">
+
+                        <label for="medicamento" class="block mb-2 font-medium text-gray-900">Selecciona los productos utilizados:</label>
+                        <div class="grid gap-6 mb-6 md:grid-cols-4">
                         @foreach ($productos as $producto)
-                            <label><input type="checkbox" name="medicamentos" value="{{ $producto->id }}" class="mb-2 text-sm font-medium text-gray-900"> {{ $producto->nombre }}</label><br>
+                            <label><input type="checkbox" name="medicamentos" value="{{ $producto->id }}" class="mb-2 text-sm font-medium text-gray-900"> {{ $producto->nombre }}</label>
                         @endforeach
+                        </div>
+
+                        <label for="servicio" class="block mb-2 font-medium text-gray-900">Selecciona los servicios requeridos para la siguiente consulta:</label>
+                        <div class="grid gap-6 mb-6 md:grid-cols-4">
+                        @foreach ($servicios as $servicio)
+                            <label><input type="checkbox" name="medicamentos" value="{{ $servicio->id }}" class="mb-2 text-sm font-medium text-gray-900"> {{ $servicio->nombre }}</label>
+                        @endforeach
+                        </div>
                         
 
 
                         <!-- receta y select medicamentos-->
                         <br><br>
                         <a href="{{ route('pagos') }}" id="boton" style="width: 105px">Confirmar</a>
-                        <a href="{{ route('consultas') }}" id="boton" style="width: 105px">Cancelar</a>
+                        <a href="{{ route('agenda') }}" id="boton" style="width: 105px">Cancelar</a>
                         
                     </form>
                     
