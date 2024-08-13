@@ -78,24 +78,6 @@
                         <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
                     </div>
 
-                    <!-- Fecha de nacimiento -->
-                    <div>
-                        <x-input-label for="fecha_nacimiento" :value="__('Fecha de nacimiento')" />
-                        <x-text-input id="fecha_nacimiento" class="block mt-1 w-full" type="date" name="fecha_nacimiento" :value="old('fecha_nacimiento')" required autofocus autocomplete="fecha_nacimiento" />
-                        <x-input-error :messages="$errors->get('fecha_nacimiento')" class="mt-2" />
-                    </div>
-
-                    <!-- Género -->
-                    <div>
-                        <x-input-label for="genero" :value="__('Género')" />
-                        <select id="genero" class="block mt-1 w-full" name="genero" required autofocus autocomplete="genero">
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('genero')" class="mt-2" />
-                    </div>
-
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="correo" :value="__('Correo')" />
@@ -112,6 +94,31 @@
                                         name="password" required autocomplete="new-password" />
 
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
+
+                    <!-- Telefono -->
+                    <div>
+                        <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678"  required />
+                    </div>
+
+                    <!-- Especialidad -->
+                    <div>
+                        <label for="especialidad" class="block mb-2 text-sm font-medium text-gray-900">Especialidad</label>
+                        <select id="especialidad" name="especialidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                            <option value="" disabled selected>Selecciona especialidad</option>
+                            <option value="Medicina_general">Medicina General</option>
+                            <option value="Psiquiatria">Psiquiatría</option>
+                            <option value="Dermatologia">Dermatología</option>
+                            <option value="Pediatria">Pediatría</option>
+                            <option value="Cardiologia">Cardiología</option>                                    
+                        </select>                            
+                    </div>
+
+                    <!-- Cedula profesional -->
+                    <div>
+                        <label for="cedula_profesional" class="block mb-2 text-sm font-medium text-gray-900">Cedula profesional</label>
+                        <input type="text" id="cedula_profesional" name="cedula_profesional" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="020203320" required />
                     </div>
 
 
