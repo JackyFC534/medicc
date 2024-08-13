@@ -69,7 +69,7 @@
                         <br><br>
 
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
-                        <h4>Diagnóstico y tratamiento previo</h4>
+                        <h4>Diagnóstico y datos de cita</h4>
                         @if (auth()->user()->tipo==="admin" || auth()->user()->tipo==="doctor")
                         <a href="{{ route('pacientes.edit', $paciente->id) }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a>
                         </div>
@@ -77,54 +77,50 @@
                         <hr style="border: 1px solid #1;">
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                             <div>
-                                <label for="fecha_consulta_anterior" class="block mb-2 text-sm font-medium text-gray-900">Fecha de la consulta anterior</label>
-                                <input type="date" id="fecha_consulta_anterior" name="fecha_consulta_anterior" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <label for="fecha_consulta" class="block mb-2 text-sm font-medium text-gray-900">Fecha de la consulta agendada</label>
+                                <input type="date" id="fecha_consulta" name="fecha_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
                             </div>
                             <div>
-                                <label for="diagnostico_anterior" class="block mb-2 text-sm font-medium text-gray-900">Diagnostico previo</label>
-                                <input type="text" id="diagnostico_anterior" name="diagnostico_anterior" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <label for="medico_consulta" class="block mb-2 text-sm font-medium text-gray-900">Medico solicitado para la consulta</label>
+                                <input type="text" id="medico_consulta" name="medico_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
                             </div>
                             <div>
-                                <label for="medicamento_anterior" class="block mb-2 text-sm font-medium text-gray-900">Medicamento previo</label>
-                                <input type="text" id="medicamento_anterior" name="medicamento_anterior" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
-                            </div>
-                            <div>
-                                <label for="detalles" class="block mb-2 text-sm font-medium text-gray-900">Más detalles</label>
-                                <input type="text" id="detalles" name="detalles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <label for="motivo" class="block mb-2 text-sm font-medium text-gray-900">Motivo</label>
+                                <input type="text" id="motivo" name="motivo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
                             </div>
                         </div>
                         <br><br>
 
                         <div class="grid gap-6 mb-6 md:grid-cols-5">
                             <h4>Signos vitales</h4> 
-                            <a href="{{ route('pagos') }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a>
+                            <!--a href="{{ route('pagos') }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a-->
                         </div>
 
                         <hr style="border: 1px solid #1;">
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div>
                                 <label for="talla" class="block mb-2 text-sm font-medium text-gray-900">Talla</label>
-                                <input type="number" id="talla" name="talla" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="talla" name="talla" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" />
                             </div>
                             <div>
                                 <label for="temperatura" class="block mb-2 text-sm font-medium text-gray-900">Temperatura</label>
-                                <input type="number" id="temperatura" name="temperatura" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="temperatura" name="temperatura" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" />
                             </div>
                             <div>
                                 <label for="sat_oxigeno" class="block mb-2 text-sm font-medium text-gray-900">Saturación de oxígeno</label>
-                                <input type="number" id="sat_oxigeno" name="sat_oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="sat_oxigeno" name="sat_oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=""  />
                             </div>
                             <div>
                                 <label for="frecuencia" class="block mb-2 text-sm font-medium text-gray-900">Frecuencia cardiaca</label>
-                                <input type="number" id="frecuencia" name="frecuencia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="frecuencia" name="frecuencia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=""  />
                             </div>
                             <div>
                                 <label for="peso" class="block mb-2 text-sm font-medium text-gray-900">Peso</label>
-                                <input type="number" id="peso" name="peso" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="peso" name="peso" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=""  />
                             </div>
                             <div>
                                 <label for="tension_arterial" class="block mb-2 text-sm font-medium text-gray-900">Tension arterial</label>
-                                <input type="number" id="tension_arterial" name="tension_arterial" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="number" id="tension_arterial" name="tension_arterial" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder=""  />
                             </div>
                         </div>
                         <br><br>
@@ -153,14 +149,23 @@
 
                         <hr style="border: 1px solid #1;">
 
-                        <label for="medicamento" class="block mb-2 font-medium text-gray-900">Selecciona los productos utilizados:</label>
+                        <label for="medicamento" class="block mb-2 font-medium text-gray-900"><b>Selecciona los productos utilizados:</b></label>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                         @foreach ($productos as $producto)
                             <label><input type="checkbox" name="medicamentos" value="{{ $producto->id }}" class="mb-2 text-sm font-medium text-gray-900"> {{ $producto->nombre }}</label>
                         @endforeach
                         </div>
 
-                        <label for="servicio" class="block mb-2 font-medium text-gray-900">Selecciona los servicios requeridos para la siguiente consulta:</label>
+                        <label for="medicamento" class="block mb-2 font-medium text-gray-900"><b>Frecuencia de los productos seleccionados:</b></label>
+                        <div class="grid gap-6 mb-6 md:grid-cols-4">
+                            <label><input type="checkbox" name="medicamentos" value="2" class="mb-2 text-sm font-medium text-gray-900"> Cada 2 hrs</label>
+                            <label><input type="checkbox" name="medicamentos" value="4" class="mb-2 text-sm font-medium text-gray-900"> Cada 4 hrs</label>
+                            <label><input type="checkbox" name="medicamentos" value="8" class="mb-2 text-sm font-medium text-gray-900"> Cada 8 hrs</label>
+                            <label><input type="checkbox" name="medicamentos" value="12" class="mb-2 text-sm font-medium text-gray-900"> Cada 12 hrs</label>
+                            <label><input type="checkbox" name="medicamentos" value="24" class="mb-2 text-sm font-medium text-gray-900"> Cada 24 hrs</label>
+                        </div>
+
+                        <label for="servicio" class="block mb-2 font-medium text-gray-900"><b>Selecciona los servicios requeridos para la siguiente consulta:</b></label>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                         @foreach ($servicios as $servicio)
                             <label><input type="checkbox" name="medicamentos" value="{{ $servicio->id }}" class="mb-2 text-sm font-medium text-gray-900"> {{ $servicio->nombre }}</label>
