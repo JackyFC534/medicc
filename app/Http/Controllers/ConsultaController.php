@@ -42,4 +42,9 @@ class ConsultaController extends Controller
 
         return view('consultas.new', compact('paciente', 'productos', 'servicios', 'medico_id', 'motivo', 'fecha', 'medicos', 'nombre_medico'));
     }
+
+    public function store(Request $request){
+        echo $request->motivo;
+    }
+
 }

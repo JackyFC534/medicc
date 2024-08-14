@@ -115,7 +115,7 @@ Route::get('/consultas', [ConsultaController::class, 'index'])->middleware(['aut
 
 Route::get('/consultas/{id}', [ConsultaController::class, 'show'])->middleware(['auth', 'verified'])->name('consultas.paciente');
 
-
+Route::post('/consultas/store', [ConsultaController::class, 'store'])->middleware(['auth', 'verified'])->name('consultas.store');
 
 
 

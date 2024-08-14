@@ -162,6 +162,7 @@
                         <textarea id="motivo" name="motivo" class="w-full px-3 py-2 border rounded h-32 resize-none" required></textarea>
                     </div>
 
+                    <input type="hidden" name="status" value="pendientes"/>
 
                     <button type="submit" id="boton" style="width: 105px" class="swal2-confirm">Guardar</button>
                 </form>
