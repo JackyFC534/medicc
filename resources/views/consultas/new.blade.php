@@ -149,31 +149,17 @@
                         <label for="medicamento" class="block mb-2 font-medium text-gray-900"><b>Productos utilizados:</b></label>
 
                         <div class="grid gap-6 mb-6 md:grid-cols-1">
-                        <a id="boton-agregar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar medicamento</a>
-                    </div>
+                            <a href="#" id="boton-agregar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar medicamento</a>
+                        </div>
                         
-                        <div id="medicamento-div" class="grid gap-6 mb-6 md:grid-cols-3" style="display: none;">
-                            <select id="medicamento" name="medicamento" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="" selected>Ninguno</option>
-                                @foreach ($productos as $producto)
-                                    <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
-                                @endforeach
-                            </select>
 
-                            <select id="frecuencia_medicamento" name="frecuencia_medicamento" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                <option value="" selected>Ninguno</option>
-                                <option value="2">Cada 2 hrs</option>
-                                <option value="4">Cada 4 hrs</option>
-                                <option value="8">Cada 8 hrs</option>
-                                <option value="12">Cada 12 hrs</option>
-                                <option value="24">Cada 24 hrs</option>
-                            </select>
-
-                            <div class="grid gap-6 mb-6 md:grid-cols-2">
-                                <a href="#" id="boton-agregar-otro" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar otro</a>
-                                <a href="#" id="boton-quitar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Quitar</a>
+                        <div id="medicamento-div" class="grid gap-6 mb-6 md:grid-cols-1" style="display: none;">
+                            <div id="medicamentos-container">
+                                <!-- Aquí se agregarán los selects dinámicamente -->
                             </div>
                         </div>
+
+                        
 
                         <hr style="border: 1px solid #1;"><br>
 
@@ -239,6 +225,7 @@
             newSelect.classList.add('medicamento-select');
 
             newSelect.innerHTML = `
+            <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <select name="medicamento[]" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     @foreach ($productos as $producto)
                         <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
@@ -252,6 +239,12 @@
                     <option value="12">Cada 12 hrs</option>
                     <option value="24">Cada 24 hrs</option>
                 </select>
+
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <a href="#" id="boton-agregar-otro" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar otro</a>
+                    <a href="#" id="boton-quitar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Quitar</a>
+                </div>
+            </div>
             `;
 
             container.appendChild(newSelect);
