@@ -17,6 +17,7 @@ class Agenda extends Model
         'date',
         'hora',
         'motivo',
+        //'status',
     ];
 
     public function paciente()

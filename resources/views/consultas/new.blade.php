@@ -148,18 +148,30 @@
 
                         <label for="medicamento" class="block mb-2 font-medium text-gray-900"><b>Productos utilizados:</b></label>
 
-                        <div class="grid gap-6 mb-6 md:grid-cols-1">
-                            <a href="#" id="boton-agregar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar medicamento</a>
-                        </div>
-                        
+                        <!-- Botón para agregar medicamentos -->
+                        <a href="#" id="boton-agregar" style="width: 150px; font-size: 12px; padding: 10px 0px;">Agregar medicamento</a>
 
-                        <div id="medicamento-div" class="grid gap-6 mb-6 md:grid-cols-1" style="display: none;">
-                            <div id="medicamentos-container">
-                                <!-- Aquí se agregarán los selects dinámicamente -->
+                        <!-- Contenedor de los medicamentos -->
+                        <div id="contenedor-medicamentos" class="grid gap-6 mb-6 md:grid-cols-4">
+                            <div class="medicamento-row">
+                                <select id="medicamento" name="medicamento[]" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    @foreach ($productos as $producto)
+                                        <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
+                                    @endforeach
+                                </select>
+
+                                <select id="frecuencia_medicamento" name="frecuencia_medicamento[]" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="2">Cada 2 hrs</option>
+                                    <option value="4">Cada 4 hrs</option>
+                                    <option value="8">Cada 8 hrs</option>
+                                    <option value="12">Cada 12 hrs</option>
+                                    <option value="24">Cada 24 hrs</option>
+                                </select>
+
+                                <a href="#" class="boton-quitar" style="width: 100px; font-size: 12px; padding: 10px 0px;">Quitar</a>
                             </div>
                         </div>
-
-                        
+                       
 
                         <hr style="border: 1px solid #1;"><br>
 
@@ -199,56 +211,33 @@
             }
         }
 
-        document.getElementById('boton-agregar').addEventListener('click', function(event) {
-            event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-            var div = document.getElementById('medicamento-div');
-            if (div.style.display === 'none') {
-                div.style.display = 'grid'; // Muestra el div
+        document.getElementById('boton-agregar').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Clona el primer div que contiene los selects de medicamento y frecuencia
+            var contenedor = document.getElementById('contenedor-medicamentos');
+            var nuevoMedicamento = contenedor.querySelector('.medicamento-row').cloneNode(true);
+
+            // Limpia los valores de los selects en el nuevo clon
+            nuevoMedicamento.querySelectorAll('select').forEach(function(select) {
+                select.value = '';
+            });
+
+            // Añade el nuevo conjunto de selects al contenedor
+            contenedor.appendChild(nuevoMedicamento);
+        });
+
+        // Función para quitar un conjunto de selects
+        document.getElementById('contenedor-medicamentos').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('boton-quitar')) {
+                e.preventDefault();
+
+                var contenedor = document.getElementById('contenedor-medicamentos');
+                if (contenedor.querySelectorAll('.medicamento-row').length > 1) {
+                    e.target.parentElement.remove();
+                }
             }
         });
-
-        document.getElementById('boton-quitar').addEventListener('click', function(event) {
-            event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-            var div = document.getElementById('medicamento-div');
-            div.style.display = 'none'; // Oculta el div
-        });
-
-        document.getElementById('boton-agregar-otro').addEventListener('click', function(event) {
-            event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-            addMedicationSelect();
-        });
-
-        function addMedicationSelect() {
-            var container = document.getElementById('medicamentos-container');
-
-            var newSelect = document.createElement('div');
-            newSelect.classList.add('medicamento-select');
-
-            newSelect.innerHTML = `
-            <div class="grid gap-6 mb-6 md:grid-cols-3">
-                <select name="medicamento[]" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    @foreach ($productos as $producto)
-                        <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
-                    @endforeach
-                </select>
-
-                <select name="frecuencia_medicamento[]" style="height: 45px;" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option value="2">Cada 2 hrs</option>
-                    <option value="4">Cada 4 hrs</option>
-                    <option value="8">Cada 8 hrs</option>
-                    <option value="12">Cada 12 hrs</option>
-                    <option value="24">Cada 24 hrs</option>
-                </select>
-
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
-                    <a href="#" id="boton-agregar-otro" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Agregar otro</a>
-                    <a href="#" id="boton-quitar" style="width: 150px; font-size: 12px; padding: 10px 0px; display: inline-block; background-color: black; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center;">Quitar</a>
-                </div>
-            </div>
-            `;
-
-            container.appendChild(newSelect);
-        }
 
 
     </script>

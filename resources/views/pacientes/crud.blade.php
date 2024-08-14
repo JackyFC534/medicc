@@ -88,7 +88,7 @@
                             @foreach($pacientes as $paciente)
                                     <tr>
                                         <td class="font-medium">{{ $loop->iteration }}</td>
-                                        <td><a href="{{ route('consultas.paciente', $paciente->id) }}">{{ $paciente->nombres }} {{ $paciente->apellidos }}</a></td>
+                                        <td>{{ $paciente->nombres }} {{ $paciente->apellidos }}</td>
                                         <td>{{ $paciente->edad }}</td>
                                         <td>{{ $paciente->genero }}</td>
                                         <td>{{ $paciente->correo }}</td>

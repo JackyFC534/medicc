@@ -28,6 +28,7 @@ class AgendaController extends Controller
             'date' => 'required|date',
             'hora' => 'required|string',
             'motivo' => 'required|string',
+            //'status' => 'required|string',
         ]);
     
         $cita = Agenda::create([
@@ -36,6 +37,7 @@ class AgendaController extends Controller
             'date' => $request->date,
             'hora' => $request->hora,
             'motivo' => $request->motivo,
+            //'status' => $request->status,
         ]);
     
         // Formatear el evento para FullCalendar

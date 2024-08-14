@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('hora');
             $table->text('motivo');
+            //$table->string('status');
             $table->timestamps();
         });
     }
