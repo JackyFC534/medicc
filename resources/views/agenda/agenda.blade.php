@@ -174,29 +174,26 @@
         fetch(`/agenda/${event.id}`)
             .then(response => response.json())
             .then(data => {
-                // Convertir la fecha al formato dd/mm/aaaa
-                const eventDate = new Date(data.date);
-                const formattedDate = eventDate.toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-
                 Swal.fire({
                     title: data.title,
                     html: `
-                        <p><strong>Fecha:</strong> ${formattedDate}</p>
+                        <p><strong>Fecha:</strong> ${new Date(data.date).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric'
+                        })}</p>
                         <p><strong>Paciente:</strong> ${data.paciente.nombres} ${data.paciente.apellidos}</p>
                         <p><strong>Médico:</strong> ${data.medico.nombres} ${data.medico.apellidos}</p>
                         <p><strong>Motivo:</strong> ${data.motivo}</p>
                         @csrf
-                        <a href="/consultas/${data.paciente.id}" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
+                        <a href="/consultas/${data.paciente.id}?medico=${data.medico.id}&motivo=${encodeURIComponent(data.motivo)}&fecha=${data.date}" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
                         <button id="edit-event" class="mt-4 px-4 py-2 bg-blue-800 text-white rounded" data-event-id="${data.id}">Editar</button>
                         <button id="delete-event" class="mt-4 px-4 py-2 bg-black text-white rounded" data-event-id="${data.id}">Eliminar</button>
-                    `,
+                        `,
                     showCloseButton: true,
                     showConfirmButton: false,
-
                     didOpen: () => {
                         document.getElementById('delete-event').addEventListener('click', function() {
                             const eventId = this.getAttribute('data-event-id');
@@ -212,8 +209,6 @@
             })
             .catch(error => console.error('Error fetching event details:', error));
     }
-
-
 
     function deleteEvent(eventId) {
         fetch(`/agenda/${eventId}`, {
