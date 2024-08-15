@@ -22,7 +22,7 @@
     <div class="container">
         <h1>Consulta</h1>
         <h2>Datos del paciente</h2>
-        <p><strong>Nombre:</strong> {{ $cita->paciente->nombres }} {{ $cita->paciente->apellidos }}</p>
+        <!-- p><strong>Nombre:</strong> {{ $cita->paciente->nombres }} {{ $cita->paciente->apellidos }}</p>
         <p><strong>Fecha de nacimiento:</strong> {{ $cita->paciente->fecha_nacimiento }}</p>
         <p><strong>Género:</strong> {{ $cita->paciente->genero }}</p>
         <p><strong>Correo:</strong> {{ $cita->paciente->correo }}</p>
@@ -52,7 +52,7 @@
         <p><strong>Frecuencia del uso del medicamento:</strong> {{ $cita->frecuencia_medicamento }}</p>
         <p><strong>Duración deel tratamiento:</strong> {{ $cita->duracion }}</p>
 
-        <p><strong>Servicios:</strong> {{ $cita->id_servicios }}</p>
+        <p><strong>Servicios:</strong> {{ $cita->id_servicios }}</p -->
     </div>
 </body>
 </html>

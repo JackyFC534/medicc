@@ -234,7 +234,7 @@
         Swal.fire({
             title: 'Editar Evento',
             html: `
-                <form method="POST" action="/agenda/${eventId}" enctype="multipart/form-data">
+                <form method="POST" action="/agenda/update/${eventId}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">

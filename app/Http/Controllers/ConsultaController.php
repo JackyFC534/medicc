@@ -11,7 +11,7 @@ use App\Models\Medico;
 use App\Models\Consulta;
 
 
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade as PDF;
 //use PDF;
 
 
@@ -146,4 +146,16 @@ class ConsultaController extends Controller
         $pdf->loadHTML($cuerpo);
         return $pdf->download('Expediente de ' . $consulta->paciente->nombres . '.pdf');
     }
+
+    /*public function generatePdf($id)
+    {
+        // Obtén los datos de la cita
+        $cita = Cita::findOrFail($id);
+        
+        // Carga la vista para el PDF
+        $pdf = Pdf::loadView('pdf.consulta', ['cita' => $cita]);
+        
+        // Retorna el PDF como una descarga
+        return $pdf->download('consulta_' . $cita->id . '.pdf');
+    }*/
 }
