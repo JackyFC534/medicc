@@ -109,7 +109,7 @@ Route::get('/nuevo_pago', function () {
 
 
 // CONSULTAS
-
+ 
 
 Route::get('/consultas', [ConsultaController::class, 'index'])->middleware(['auth', 'verified'])->name('consultas');
 
