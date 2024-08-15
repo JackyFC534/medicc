@@ -203,10 +203,11 @@
                         
 
 
-                        <div class="grid gap-6 mb-6 md:grid-cols-4">
+                        <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <!-- receta en pdf o consulta en pdf--><br>
-                        <a id="boton" >Imprimir Receta</a>
-                        <a id="boton">Imprimir consulta</a>
+                        <a href="{{ route('consulta.pdf', $cita->id) }}" id="boton">Imprimir consulta</a>
+                        <a href="{{ route('consulta.pdf', ['id' => $consultaId]) }}">Generar PDF</a>
+
                         </div>
 
                         <br><br>

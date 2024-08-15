@@ -26,7 +26,7 @@ class Consulta extends Model
         'recomendaciones',
 
         'id_medicamento',
-        'frecuencia',
+        'frecuencia_medicamento',
         'duracion',
 
         'id_servicios',

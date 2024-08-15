@@ -112,11 +112,10 @@ Route::get('/nuevo_pago', function () {
  
 
 Route::get('/consultas', [ConsultaController::class, 'index'])->middleware(['auth', 'verified'])->name('consultas');
-
 Route::get('/consultas/{id}', [ConsultaController::class, 'show'])->middleware(['auth', 'verified'])->name('consultas.paciente');
-
 Route::post('/consultas/store', [ConsultaController::class, 'store'])->middleware(['auth', 'verified'])->name('consultas.store');
-
+//Route::get('/consulta/pdf/{id}', [ConsultaController::class, 'crear_pdf'])->name('consulta.pdf');
+Route::get('consulta/{id}/pdf', [ConsultaController::class, 'crear_pdf'])->name('consulta.pdf');
 
 
 // PERFIL

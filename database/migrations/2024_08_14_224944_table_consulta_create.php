@@ -39,7 +39,6 @@ return new class extends Migration
             $table->foreign('id_cita')->references('id')->on('agendas')->onDelete('cascade');
             $table->foreign('id_medicamento')->references('id')->on('productos')->onDelete('cascade');
             $table->foreign('id_servicios')->references('id')->on('servicios')->onDelete('cascade');
-
             
             $table->timestamps();
         });
