@@ -23,19 +23,19 @@
 
     .swal2-confirm {
         display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 15px;
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
     }
 
     .swal2-cancel {
-    background-color: gray; /* Cambia el color de fondo del botón Cancelar */
-    color: white; /* Cambia el color del texto del botón Cancelar */
+        background-color: gray; /* Cambia el color de fondo del botón Cancelar */
+        color: white; /* Cambia el color del texto del botón Cancelar */
     }
 </style>
 
@@ -190,7 +190,7 @@
                         <p><strong>Médico:</strong> ${data.medico.nombres} ${data.medico.apellidos}</p>
                         <p><strong>Motivo:</strong> ${data.motivo}</p>
                         @csrf
-                        <a href="/consultas/${data.paciente.id}?medico=${data.medico.id}&motivo=${encodeURIComponent(data.motivo)}&fecha=${data.date}" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
+                        <a href="/consultas/${data.id}" class="mt-4 px-4 py-2 bg-green-800 text-white rounded">Consultar</a>
                         <button id="edit-event" class="mt-4 px-4 py-2 bg-blue-800 text-white rounded" data-event-id="${data.id}">Editar</button>
                         <button id="delete-event" class="mt-4 px-4 py-2 bg-black text-white rounded" data-event-id="${data.id}">Eliminar</button>
                         `,
@@ -221,79 +221,61 @@
         })
         .then(response => {
             if (response.ok) {
-                calendar.refetchEvents(); // Actualizar eventos en el calendario
-                Swal.fire('Eliminado', 'El evento ha sido eliminado', 'success');
+                calendar.refetchEvents();
+                Swal.fire('Eliminado', 'El evento ha sido eliminado.', 'success');
             } else {
-                Swal.fire({
-                    willClose: () => {
-                    // Recargar la página después de cerrar la alerta
-                    window.location.reload();
-                    }
-                });
+                Swal.fire('Error', 'No se pudo eliminar el evento.', 'error');
             }
         })
-        .catch(error => {
-            console.error('Error deleting event:', error);
-            Swal.fire('Error', 'Hubo un problema al eliminar el evento', 'error');
-        });
+        .catch(error => console.error('Error deleting event:', error));
     }
 
     function openEditEventModal(eventId, eventData) {
         Swal.fire({
             title: 'Editar Evento',
             html: `
-                <form id="edit-event-form" method="POST" action="{{ route('agenda.update', '') }}/${eventId}" enctype="multipart/form-data">
+                <form method="POST" action="/agenda/${eventId}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <div class="grid gap-4 mb-1 md:grid-cols-3">
-                            <label for="id_paciente" class="block text-gray-700">Paciente</label>
-                        </div>
+                        <label for="id_paciente" class="block text-gray-700">Paciente</label>
                         <select id="id_paciente" name="id_paciente" class="w-full px-3 py-2 border rounded" required>
-                            <option value="" disabled>Seleccione el paciente...</option>
                             @foreach($pacientes as $paciente)
-                                <option value="{{ $paciente->id }}" ${eventData.paciente_id === {{ $paciente->id }} ? 'selected' : ''}>{{ $paciente->nombres }} {{ $paciente->apellidos }}</option>
+                                <option value="{{ $paciente->id }}" ${eventData.paciente.id == {{ $paciente->id }} ? 'selected' : ''}>{{ $paciente->nombres }} {{ $paciente->apellidos }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <div class="grid gap-4 mb-1 md:grid-cols-3">
-                            <label for="id_medico" class="block text-gray-700">Médico</label>
-                        </div>
+                        <label for="id_medico" class="block text-gray-700">Médico</label>
                         <select id="id_medico" name="id_medico" class="w-full px-3 py-2 border rounded" required>
-                            <option value="" disabled>Seleccione el médico...</option>
                             @foreach($medicos as $medico)
-                                <option value="{{ $medico->id }}" ${eventData.medico_id === {{ $medico->id }} ? 'selected' : ''}>{{ $medico->nombres }} {{ $medico->apellidos }}</option>
+                                <option value="{{ $medico->id }}" ${eventData.medico.id == {{ $medico->id }} ? 'selected' : ''}>{{ $medico->nombres }} {{ $medico->apellidos }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <div class="grid gap-4 mb-1 md:grid-cols-3">
-                            <label for="date" class="block text-gray-700">Fecha</label>
-                        </div>
+                        <label for="date" class="block text-gray-700">Fecha</label>
                         <input type="date" id="date" name="date" value="${eventData.date}" class="w-full px-3 py-2 border rounded" required>
                     </div>
 
                     <div class="mb-3">
-                        <div class="grid gap-4 mb-1 md:grid-cols-3">
-                            <label for="hora" class="block text-gray-700">Hora de la cita</label>
-                        </div>
-                        <select id="hora" name="hora" class="w-full px-3 py-2 border rounded" required>
-                            <option value="" disabled>Seleccione la hora...</option>
-                            ${generateTimeOptions(eventData.hora)}
+                        <label for="hora" class="block text-gray-700">Hora de la cita</label>
+                        <select id="hora" name="hora" class="w-full px-3 py-2 border rounded required">
+                            <option value="${eventData.hora}" selected>${eventData.hora}</option>
+                            ${generateTimeOptions()}
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <div class="grid gap-4 mb-1 md:grid-cols-3">
-                            <label for="motivo" class="block text-gray-700">Motivo</label>
-                        </div>
+                        <label for="motivo" class="block text-gray-700">Motivo</label>
                         <textarea id="motivo" name="motivo" class="w-full px-3 py-2 border rounded h-32 resize-none" required>${eventData.motivo}</textarea>
                     </div>
 
-                    <button type="submit" id="boton" style="width: 110px" class="swal2-confirm">Actualizar</button>
+                    <input type="hidden" name="status" value="pendientes"/>
+
+                    <button type="submit" id="boton" style="width: 105px" class="swal2-confirm">Guardar</button>
                 </form>
             `,
             showConfirmButton: false,

@@ -31,37 +31,36 @@
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-5">
                         <h4>Datos del paciente</h4>
-                        <a href="{{ route('pacientes.edit', $paciente->id) }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a>
                         </div>
                         <hr style="border: 1px solid #1;">
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <div>
                             <label for="nombres" class="block mb-2 text-sm font-medium text-gray-900">Nombre(s)</label>
-                                <input type="text" value="{{ $paciente->nombres }}" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" readonly />
+                                <input type="text" value="{{ $cita->paciente->nombres }}" id="nombres" name="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" readonly />
                             </div>
                             <div>
                                 <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900">Apellido(s)</label>
-                                <input type="text" value="{{ $paciente->apellidos }}" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Smith" readonly />
+                                <input type="text" value="{{ $cita->paciente->apellidos }}" id="apellidos" name="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Smith" readonly />
                             </div>
                             <div>
                                 <label for="fecha_nacimiento" class="block mb-2 text-sm font-medium text-gray-900">Fecha de nacimiento</label>
-                                <input type="date" value="{{ $paciente->fecha_nacimiento }}" id="fecha_nacimiento" name="fecha_nacimiento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="date" value="{{ $cita->paciente->fecha_nacimiento }}" id="fecha_nacimiento" name="fecha_nacimiento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
                             </div>
                             <div>
                                 <label for="genero" class="block mb-2 text-sm font-medium text-gray-900">Género</label>
-                                <input type="genero" value="{{ $paciente->genero }}" id="genero" name="genero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
+                                <input type="genero" value="{{ $cita->paciente->genero }}" id="genero" name="genero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" readonly />
                             </div>
                             <div>
                                 <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
-                                <input type="email" value="{{ $paciente->correo }}" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ejemplo@gmail.com" readonly />
+                                <input type="email" value="{{ $cita->paciente->correo }}" id="correo" name="correo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ejemplo@gmail.com" readonly />
                             </div>
                             <div>
                                 <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
-                                <input type="tel" value="{{ $paciente->telefono }}" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678" readonly />
+                                <input type="tel" value="{{ $cita->paciente->telefono }}" id="telefono" name="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678" readonly />
                             </div>
                             <div>
                                 <label for="notas" class="block mb-2 text-sm font-medium text-gray-900">Notas</label>
-                                <input type="text" value="{{ $paciente->notas }}" id="notas" name="notas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" readonly />
+                                <input type="text" value="{{ $cita->paciente->notas }}" id="notas" name="notas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" readonly />
                             </div>
                         </div>
                         <br><br>
@@ -69,22 +68,22 @@
                         <div class="grid gap-6 mb-6 md:grid-cols-5">
                         <h4>Datos de cita </h4>
                         
-                        <a href="{{ route('pacientes.edit', $paciente->id) }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a>
+                        <a href="{{ route('pacientes.edit', $cita->paciente->id) }}" id="boton" style="width: 60px; font-size: 12px; padding: 10px 0px;">Editar</a>
                         </div>
                         
                         <hr style="border: 1px solid #1;">
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                             <div>
                                 <label for="fecha_consulta" class="block mb-2 text-sm font-medium text-gray-900">Fecha de la consulta agendada</label>
-                                <input type="date" id="fecha_consulta" name="fecha_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $fecha }}" readonly />
+                                <input type="date" id="fecha_consulta" name="fecha_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $cita->date }}" readonly />
                             </div>
                             <div>
                                 <label for="medico_consulta" class="block mb-2 text-sm font-medium text-gray-900">Medico solicitado para la consulta</label>
-                                <input type="text" id="medico_consulta" name="medico_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nombre_medico }}" readonly />
+                                <input type="text" id="medico_consulta" name="medico_consulta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $cita->medico->nombres }}" readonly />
                             </div>
                             <div>
                                 <label for="motivo" class="block mb-2 text-sm font-medium text-gray-900">Motivo</label>
-                                <input type="text" id="motivo" name="motivo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $motivo }}" readonly />
+                                <input type="text" id="motivo" name="motivo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $cita->motivo }}" readonly />
                             </div>
                         </div>
                         <br><br>

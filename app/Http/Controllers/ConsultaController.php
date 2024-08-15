@@ -24,23 +24,13 @@ class ConsultaController extends Controller
         return view('consultas.new', compact('pacientes', 'productos', 'servicios', 'medicos'));
     }
 
-    public function show($id_paciente, Request $request)
+    public function show($id)
     {
-        $paciente = Paciente::findOrFail($id_paciente);
+        $cita = Agenda::where('id', $id)->get()[0];
         $productos = Producto::all();
         $servicios = Servicio::all();
-        $medicos = Medico::all();
 
-        $medico_id = $request->input('medico');
-        $motivo = $request->input('motivo');
-        $fecha = $request->input('fecha');
-
-        // Busca el nombre del médico
-        $medico = Medico::find($medico_id);
-        $nombre_medico = $medico ? $medico->nombres . ' ' . $medico->apellidos : $medico_id;
-
-
-        return view('consultas.new', compact('paciente', 'productos', 'servicios', 'medico_id', 'motivo', 'fecha', 'medicos', 'nombre_medico'));
+        return view('consultas.new', compact('cita', 'productos', 'servicios'));
     }
 
     public function store(Request $request){

@@ -18,6 +18,10 @@ return new class extends Migration
             $table->text('motivo');
             //$table->string('status');
             $table->timestamps();
+
+            $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');
+            $table->foreign('id_medico')->references('id')->on('medicos')->onDelete('cascade');
+
         });
     }
 
