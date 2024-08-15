@@ -108,8 +108,8 @@
                                 <input type="number" id="temperatura" name="temperatura" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" max="999" min="0" step="0.01" oninput="validateInput(this)" placeholder="" required/>
                             </div>
                             <div>
-                                <label for="sat_oxigeno" class="block mb-2 text-sm font-medium text-gray-900">Saturación de oxígeno</label>
-                                <input type="number" id="sat_oxigeno" name="sat_oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" max="999" min="0" step="0.01" oninput="validateInput(this)" placeholder="" required />
+                                <label for="oxigeno" class="block mb-2 text-sm font-medium text-gray-900">Saturación de oxígeno</label>
+                                <input type="number" id="oxigeno" name="    oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" max="999" min="0" step="0.01" oninput="validateInput(this)" placeholder="" required />
                             </div>
                             <div>
                                 <label for="frecuencia" class="block mb-2 text-sm font-medium text-gray-900">Frecuencia cardiaca</label>
@@ -229,35 +229,6 @@
                 input.value = value.slice(0, -1);
             }
         }
-
-        document.getElementById('boton-agregar').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            // Clona el primer div que contiene los selects de medicamento y frecuencia
-            var contenedor = document.getElementById('contenedor-medicamentos');
-            var nuevoMedicamento = contenedor.querySelector('.medicamento-row').cloneNode(true);
-
-            // Limpia los valores de los selects en el nuevo clon
-            nuevoMedicamento.querySelectorAll('select').forEach(function(select) {
-                select.value = '';
-            });
-
-            // Añade el nuevo conjunto de selects al contenedor
-            contenedor.appendChild(nuevoMedicamento);
-        });
-
-        // Función para quitar un conjunto de selects
-        document.getElementById('contenedor-medicamentos').addEventListener('click', function(e) {
-            if (e.target && e.target.classList.contains('boton-quitar')) {
-                e.preventDefault();
-
-                var contenedor = document.getElementById('contenedor-medicamentos');
-                if (contenedor.querySelectorAll('.medicamento-row').length > 1) {
-                    e.target.parentElement.remove();
-                }
-            }
-        });
-
 
     </script>
 

@@ -41,43 +41,26 @@ class ConsultaController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'paciente_id' => 'required|exists:pacientes,id',
-            'medico_id' => 'required|exists:medicos,id',
-            'cita_id' => 'required|exists:agendas,id',
-            'talla' => 'required|numeric',
-            'temperatura' => 'required|numeric',
-            'oxigeno' => 'required|numeric',
-            'frecuencia' => 'required|numeric',
-            'peso' => 'required|numeric',
-            'tension' => 'required|numeric',
-            'motivo' => 'required|string',
-            'notas' => 'required|string',
-            'recomendaciones' => 'required|string',
-            'id_medicamento' => 'nullable|exists:productos,id',
-            'frecuencia_medicamento' => 'nullable|string',
-            'duracion' => 'nullable|string',
-            'id_servicios' => 'nullable|exists:servicios,id',
-        ]);
+        echo $request;
     
         Consulta::create([
-            'id_paciente' => $validatedData['id_paciente'],
-            'id_medico' => $validatedData['id_medico'],
-            'id_cita' => $validatedData['id_cita'],
-            'talla' => $validatedData['talla'],
-            'temperatura' => $validatedData['temperatura'],
-            'oxigeno' => $validatedData['oxigeno'],
-            'frecuencia' => $validatedData['frecuencia'],
-            'peso' => $validatedData['peso'],
-            'tension' => $validatedData['tension'],
-            'motivo_consulta' => $validatedData['motivo'],
-            'notas_padecimiento' => $validatedData['notas'],
-            'recomendaciones' => $validatedData['recomendaciones'],
-            'id_medicamento' => $validatedData['id_medicamento'],
-            'frecuencia_medicamento' => $validatedData['frecuencia_medicamento'],
-            'duracion' => $validatedData['duracion'],
-            'id_servicios' => $validatedData['id_servicios'],
-        ]);
+            'id_paciente' => $request['id_paciente'],
+            'id_medico' => $request['id_medico'],
+            'id_cita' => $request['id_cita'],
+            'talla' => $request['talla'],
+            'temperatura' => $request['temperatura'],
+            'oxigeno' => $request['oxigeno'],
+            'frecuencia' => $request['frecuencia'],
+            'peso' => $request['peso'],
+            'tension' => $request['tension'],
+            'motivo_consulta' => $request['motivo'],
+            'notas_padecimiento' => $request['notas'],
+            'recomendaciones' => $request['recomendaciones'],
+            'id_medicamento' => $request['id_medicamento'],
+            'frecuencia_medicamento' => $request['frecuencia_medicamento'],
+            'duracion' => $request['duracion'],
+            'id_servicios' => $request['id_servicios'],
+        ]); 
     
         return redirect()->route('agenda')->with('success', 'Consulta registrada con éxito.');
     }
