@@ -109,7 +109,7 @@
                             </div>
                             <div>
                                 <label for="oxigeno" class="block mb-2 text-sm font-medium text-gray-900">Saturación de oxígeno</label>
-                                <input type="number" id="oxigeno" name="    oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" max="999" min="0" step="0.01" oninput="validateInput(this)" placeholder="" required />
+                                <input type="number" id="oxigeno" name="oxigeno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" max="999" min="0" step="0.01" oninput="validateInput(this)" placeholder="" required />
                             </div>
                             <div>
                                 <label for="frecuencia" class="block mb-2 text-sm font-medium text-gray-900">Frecuencia cardiaca</label>
@@ -205,7 +205,7 @@
 
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <!-- receta en pdf o consulta en pdf--><br>
-                        <!-- a href=" route('consultas.pdf', $cita->id ) " id="boton">Generar PDF</!-->
+                        <!-- a href="  route('consultas.pdf', $cita->id ) " id="boton">Generar PDF</!-->
 
                         </div>
 

@@ -41,7 +41,7 @@ class ConsultaController extends Controller
 
     public function store(Request $request)
     {
-        echo $request;
+        echo $request->tension_arterial;
     
         Consulta::create([
             'id_paciente' => $request['id_paciente'],
@@ -52,19 +52,94 @@ class ConsultaController extends Controller
             'oxigeno' => $request['oxigeno'],
             'frecuencia' => $request['frecuencia'],
             'peso' => $request['peso'],
-            'tension' => $request['tension'],
-            'motivo_consulta' => $request['motivo'],
-            'notas_padecimiento' => $request['notas'],
+            'tension' => $request['tension_arterial'], // ----
+            'motivo_consulta' => $request['motivo_consulta'],
+            'notas_padecimiento' => $request['notas_padecimiento'],
             'recomendaciones' => $request['recomendaciones'],
             'id_medicamento' => $request['id_medicamento'],
             'frecuencia_medicamento' => $request['frecuencia_medicamento'],
             'duracion' => $request['duracion'],
             'id_servicios' => $request['id_servicios'],
         ]); 
+        
     
         return redirect()->route('agenda')->with('success', 'Consulta registrada con éxito.');
     }
 
+    public function crear_pdf($id)
+    {
+        $pdf = app('dompdf.wrapper');
+        $consulta = Consulta::where('id_paciente', $id)->get();
+        $estilos = '<style> body {font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;} .container { width: 80%; margin: 20px auto; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 8px; } h1 { text-align: center; color: #333; } .patient-info { margin-bottom: 20px; } .patient-info h2 { color: #666; } .patient-info p { margin: 5px 0; } .appointments { margin-top: 20px; } .appointment { border-bottom: 1px solid #ddd; padding: 10px 0; } .appointment:last-child { border-bottom: none; } .appointment h3 { color: #007BFF; margin: 0; } .appointment p { margin: 5px 0; color: #555; } </style> <br>';
+        $cuerpo = $estilos.'<div class="container"><h1>Expediente Médico</h1>';
+        $nombrePac = "";
+        
+        for ($i=0; $i < count(json_decode($consulta, true)); $i++) {
+            $cita = Agenda::where('id', $consulta[$i]->id_cita)->get();   
+
+            foreach($cita as $itemCita){ 
+                $nombrePac = $itemCita->paciente->nombres. ' ' .$itemCita->paciente->apellidos;
+                $cuerpo = $cuerpo.'<div class="patient-info">';
+                    $cuerpo = $cuerpo.'<h2>Información del Paciente</h2>';
+                    $cuerpo = $cuerpo.'<p><strong>Nombre:</strong> '. $nombrePac .'</p>';
+                    $cuerpo = $cuerpo.'<p><strong>Fecha de nacimiento:</strong> '. $itemCita->paciente->fecha_nacimiento .'</p>';
+                    $cuerpo = $cuerpo.'<p><strong>Género:</strong> '. $itemCita->paciente->genero .'</p>';
+                    $cuerpo = $cuerpo.'<p><strong>Correo:</strong> '. $itemCita->paciente->correo .'</p>';
+                    $cuerpo = $cuerpo.'<p><strong>Telefono:</strong> '. $itemCita->paciente->telefono .'</p>';
+                    $cuerpo = $cuerpo.'<p><strong>Notas del paciente:</strong> '. $itemCita->paciente->notas .'</p>';
+
+                $cuerpo = $cuerpo.'</div>';
+
+                $cuerpo = $cuerpo.'<div class="appointments">';
+                    $cuerpo = $cuerpo.'<h2>Cita Médicas</h2>';
+                    $cuerpo = $cuerpo.'<div class="appointment">';
+                        
+                        $cuerpo = $cuerpo.'<div class="appointments">';
+                            $cuerpo = $cuerpo.'<h2>Consulta General</h2>';
+                            $cuerpo = $cuerpo.'<div class="appointment">';
+                                $cuerpo = $cuerpo.'<p><strong>Fecha:</strong> '. $itemCita->date .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Hora:</strong> '. $itemCita->hora .'</p>';
+                                $cuerpo = $cuerpo.' <p><strong>Médico:</strong> '. $itemCita->medico->nombres . $itemCita->medico->apellidos .'</p>';  
+                            $cuerpo = $cuerpo.'</div>';
+                        $cuerpo = $cuerpo.'</div>';
+
+                        $cuerpo = $cuerpo.'<div class="appointments">';
+                            $cuerpo = $cuerpo.'<h2>Detalles de Consulta</h2>';
+                            $cuerpo = $cuerpo.'<div class="appointment">';
+                                $cuerpo = $cuerpo.'<p><strong>Talla:</strong> '. $consulta[$i]->talla .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Peso:</strong> '. $consulta[$i]->peso .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Temperatura:</strong> '. $consulta[$i]->temperatura .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Saturación de oxigeno:</strong> '. $consulta[$i]->oxigeno .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Frecuencia cardiaca:</strong> '. $consulta[$i]->frecuencia .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Tensión arterial:</strong> '. $consulta[$i]->tension_arterial .'</p>';
+                            $cuerpo = $cuerpo.'</div>';
+                        $cuerpo = $cuerpo.'</div>';
+
+                        $cuerpo = $cuerpo.'<div class="appointments">';
+                        $cuerpo = $cuerpo.'<h2>Tratamientos medicos</h2>';
+
+                        foreach($tratamiento as $itemTratamiento){
+                            $cuerpo = $cuerpo.'<div class="appointment">';
+                                $cuerpo = $cuerpo.'<p><strong>Motivo consulta:</strong> '. $consulta[$i]->motivo_consulta .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Notas del padecimiento:</strong> '. $consulta[$i]->notas_padecimiento .'</p>';
+                                $cuerpo = $cuerpo.'<p><strong>Recomendaciones:</strong> '. $consulta[$i]->recomendaciones .'</p>';
+                            $cuerpo = $cuerpo.'</div>';
+                        }
+                        $cuerpo = $cuerpo.'</div>';
+
+                    $cuerpo = $cuerpo.'</div>';
+                $cuerpo = $cuerpo.'</div>';
+
+            }
+
+        }
+
+        $cuerpo = $cuerpo."</div>";
+        $pdf->loadHTML($cuerpo);
+        return $pdf->download('Expediente de '. $nombrePac .'.pdf');
+    }
+
+    /*
     public function crear_pdf($id)
     {
         $pdf = app('dompdf.wrapper');
@@ -130,7 +205,7 @@ class ConsultaController extends Controller
         return $pdf->download('Expediente de ' . $consulta->paciente->nombres . '.pdf');
     }
 
-    /*public function generatePdf($id)
+    public function generatePdf($id)
     {
         // Obtén los datos de la cita
         $cita = Cita::findOrFail($id);
