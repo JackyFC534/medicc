@@ -10,9 +10,7 @@ class PacienteController extends Controller
 {
     public function index()
     {
-        // Obtener todos los pacientes de la base de datos
         $pacientes = Paciente::all();
-        // Pasar los datos a la vista
         return view('pacientes.crud', compact('pacientes'));
     }
 
@@ -54,13 +52,25 @@ class PacienteController extends Controller
         return view('pacientes.new'); // Pasar los pacientes a la vista
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'fecha_nacimiento' => 'required|date',
+            'genero' => 'required|string',
+            'correo' => 'required|string|email|max:255|unique:pacientes,correo',
+            'password' => 'required|string|min:8',
+        ]);
 
-        Paciente::create($request->all());
+        $validatedData['password'] = bcrypt($validatedData['password']); // Encriptar contraseña
 
-        return redirect()->route('pacientes')->with('success', 'Paciente registrado exitosamente.');
+        // Guardar el paciente
+        Paciente::create($validatedData);
+
+        return redirect()->route('pacientes')->with('success', 'Paciente registrado correctamente');
     }
+
+
 
     public function destroy($id)
     {

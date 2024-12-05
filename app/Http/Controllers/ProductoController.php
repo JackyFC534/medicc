@@ -63,7 +63,7 @@ class ProductoController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */ 
+     */
     public function create()
     {
         return view('productos.new'); // Pasar los pacientes a la vista
@@ -85,7 +85,7 @@ class ProductoController extends Controller
     public function destroy(string $id)
     {
         // Encuentra el productos por su ID
-        $productos = Productos::find($id);
+        $productos = Producto::find($id);
 
         // Verifica si el productos existe
         if ($productos) {

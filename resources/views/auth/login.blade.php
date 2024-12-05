@@ -1,113 +1,45 @@
-<x-guest-layout>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen flex items-center justify-center bg-blue-900">
 
-    <style>
-        .container {
-            display: flex;
-            align-items: center; /* Alinear elementos verticalmente al centro */
-        }
-        .imagen {
-            border: 3px solid #ccc; /* Borde sólido de 2 píxeles de ancho y color gris claro */
-            padding: 10px; /* Espacio interno dentro del borde */
-            margin-right: 20px; /* Espacio entre la imagen y el texto */
-        }
-        .texto {
-            flex: 1; /* Hace que el texto ocupe todo el espacio restante */
-            font-size: 20px;
-        }
-
-        .texto p {
-            font-size: 40px; /* Tamaño de fuente para párrafos específicos */
-            line-height: 1.5; /* Espaciado entre líneas */
-            margin-bottom: 10px; /* Margen inferior para separación */
-            font-weight: bold;
-        }
-
-        #boton {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 15px;
-        }
-        #registro {
-            font-weight: bold;
-            text-align: center;
-            font-size: 15px;
-            margin-left: 20px;
-            color: gray; /* Color por defecto */
-            text-decoration: none; /* Eliminar subrayado por defecto */
-        }
-
-        #registro:hover {
-            color: black; /* Color al pasar el cursor */
-            text-decoration: none; /* Mantener subrayado desactivado */
-        }
-
-    </style>
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Inicio de Sesión') }}
-        </h2>
-    </x-slot>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <div class="py-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <!-- Email Address -->
-                        <div>
-                            <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                        </div>
-
-                        <!-- Password -->
-                        <div class="mt-4">
-                            <x-input-label for="password" :value="__('Password')" />
-
-                            <x-text-input id="password" class="block mt-1 w-full"
-                                            type="password"
-                                            name="password"
-                                            required autocomplete="current-password" />
-
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                        </div>
-
-                        <!-- Remember Me -->
-                        <div class="block mt-4">
-                            <label for="remember_me" class="inline-flex items-center">
-                                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                            </label>
-                        </div>
-
-                        <div class="flex items-center justify-end mt-4">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                            @endif
-
-                            <x-primary-button class="ms-3">
-                                {{ __('Log in') }}
-                            </x-primary-button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <div class="bg-blue-100 bg-opacity-30 text-white rounded-xl p-8 w-96 shadow-lg relative">
+        <!-- Avatar -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
         </div>
+
+        <!-- Formulario -->
+        <h2 class="text-center text-xl font-bold mt-12 mb-6">Iniciar Sesión</h2>
+        <form class="space-y-6">
+            <!-- Campo de correo -->
+            <div class="flex items-center bg-gray-100 text-gray-700 rounded-full px-4 py-2">
+                <svg class="h-6 w-6 text-gray-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <input type="email" placeholder="Correo Electrónico" class="flex-1 bg-transparent focus:outline-none">
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="flex items-center bg-gray-100 text-gray-700 rounded-full px-4 py-2">
+                <svg class="h-6 w-6 text-gray-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                <input type="password" placeholder="Contraseña" class="flex-1 bg-transparent focus:outline-none">
+            </div>
+
+            <!-- Botón de iniciar sesión -->
+            <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-shadow shadow-md">Iniciar Sesión</button>
+        </form>
+
     </div>
-</x-guest-layout>
+
+</body>
+</html>

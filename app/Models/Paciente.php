@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 class Paciente extends Model
 {
-    use HasFactory; 
+    use HasFactory;
 
     protected $fillable = [
         'nombres',
@@ -16,14 +15,6 @@ class Paciente extends Model
         'fecha_nacimiento',
         'genero',
         'correo',
-        'telefono',
-        'contraseña', // ?
-        'notas'
+        'password',
     ];
-
-    // Accesor para calcular la edad
-    public function getEdadAttribute()
-    {
-        return Carbon::parse($this->fecha_nacimiento)->age;
-    }
 }

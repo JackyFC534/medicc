@@ -12,19 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->id(); // Auto-incremento y clave primaria 'id'
+            $table->id();
             $table->string('nombres');
             $table->string('apellidos');
-
             $table->date('fecha_nacimiento');
             $table->string('genero');
-
-            $table->string('correo');
-            $table->string('telefono');
-            $table->string('contraseña'); // ?
-
-            $table->string('notas');
-
+            $table->string('correo')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
