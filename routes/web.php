@@ -41,7 +41,6 @@ Route::put('/medicos/update/{id}', [MedicoController::class, 'update'])->middlew
 Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('medicos.destroy');
 
 
-
 // AGENDA
 
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');

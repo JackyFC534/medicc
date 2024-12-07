@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Medico;
 
- 
+
 class MedicoController extends Controller
 {
     public function index()
@@ -13,7 +13,7 @@ class MedicoController extends Controller
 
         // Obtener todos los medicos de la base de datos
         $medicos = Medico::all();
-        
+
         // Pasar los datos a la vista
         return view('medicos.crud', compact('medicos'));
     }
@@ -52,7 +52,7 @@ class MedicoController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([ 
+        $validate = $request->validate([
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'correo' => 'required|string|max:255',
@@ -82,7 +82,7 @@ class MedicoController extends Controller
             // Redirige a la lista de médicos con un mensaje de error
             return redirect()->route('medicos')->with('error', 'Médico no encontrado.');
         }
-    }   
+    }
 
 
 }

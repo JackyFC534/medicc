@@ -30,7 +30,7 @@
         align-items: center; /* Centra verticalmente */
         justify-content: center; /* Centra horizontalmente */
         padding: 10px 20px;
-        background-color: black;
+        background-color: rgb(21, 9, 154);
         color: white;
         text-decoration: none;
         font-weight: bold;
@@ -54,11 +54,6 @@
 
 </style>
 
-<x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Inicio') }}
-    </h2>
-</x-slot>
 
 <div class="py-10">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
