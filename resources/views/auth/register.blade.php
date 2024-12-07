@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .error {
@@ -27,8 +28,9 @@
         </div>
 
         <!-- Formulario -->
-        <h2 class="text-center text-xl font-bold mt-12 mb-6">Crear Cuenta</h2>
-        <form class="space-y-6" id="registerForm">
+        <h2 class="text-center text-xl font-bold mt-12 mb-6">Registro</h2>
+        <form method="POST" action="{{ route('register') }}" class="space-y-6" id="registerForm">
+            @csrf
             <!-- Campo de Nombre -->
             <div class="flex items-center bg-gray-100 text-gray-700 rounded-full px-4 py-2 name-container">
                 <svg class="h-6 w-6 text-black mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
