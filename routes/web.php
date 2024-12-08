@@ -8,12 +8,21 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
+
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+});
+
 
 // PACIENTES
 Route::resource('pacientes', PacienteController::class);
@@ -45,6 +54,7 @@ Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware
 
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 Route::post('/agenda/store', [AgendaController::class, 'store'])->name('agenda.store');
+Route::get('/medicos/agenda', [MedicoController::class, 'agenda'])->middleware(['auth', 'verified'])->name('medicos_agenda');
 
 
 

@@ -84,5 +84,11 @@ class MedicoController extends Controller
         }
     }
 
+    public function agenda()
+    {
+        return view('medicos.agenda'); // Cambia 'medicos.agenda' por la ruta de tu vista de agenda.
+    }
+
+
 
 }
