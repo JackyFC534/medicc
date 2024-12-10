@@ -52,23 +52,20 @@ class PacienteController extends Controller
         return view('pacientes.new'); // Pasar los pacientes a la vista
     }
 
-    public function store(Request $request){
-        $validatedData = $request->validate([
-            'nombres' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
-            'fecha_nacimiento' => 'required|date',
-            'genero' => 'required|string',
-            'correo' => 'required|string|email|max:255|unique:pacientes,correo',
-            'password' => 'required|string|min:8',
-        ]);
-
-        $validatedData['password'] = bcrypt($validatedData['password']); // Encriptar contraseña
-
+    public function store(Request $request)
+    {
+        $data = $request->all();
+    
+        // Mapear contraseña al campo esperado por la base de datos
+        $data['password'] = bcrypt($request->input('contraseña')); // Encriptar contraseña
+        unset($data['contraseña']); // Eliminar el campo innecesario
+    
         // Guardar el paciente
-        Paciente::create($validatedData);
-
-        return redirect()->route('pacientes')->with('success', 'Paciente registrado correctamente');
+        Paciente::create($data);
+    
+        return redirect()->route('pacientes')->with('success', 'Paciente registrado exitosamente.');
     }
+    
 
 
 

@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 // PACIENTES
 Route::resource('pacientes', PacienteController::class);
-Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes');
+Route::get('/pacientes', [PacienteController::class, 'index'])->middleware(['auth', 'verified'])->name('pacientes');
 Route::get('/pacientes/create', [PacienteController::class, 'create'])->middleware(['auth', 'verified'])->name('pacientes.create');
-Route::post('/pacientes/store', [PacienteController::class, 'store'])->name('pacientes.store');
+Route::post('/pacientes/store', [PacienteController::class, 'store'])->middleware(['auth', 'verified'])->name('pacientes.store');
 Route::get('/pacientes/view/{id}', [PacienteController::class, 'show'])->middleware(['auth', 'verified'])->name('pacientes.show');
 Route::get('/pacientes/edit/{id}', [PacienteController::class, 'edit'])->middleware(['auth', 'verified'])->name('pacientes.edit');
 Route::put('/pacientes/update/{id}', [PacienteController::class, 'update'])->middleware(['auth', 'verified'])->name('pacientes.update');
@@ -45,8 +45,6 @@ Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware
 
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 Route::post('/agenda/store', [AgendaController::class, 'store'])->name('agenda.store');
-
-
 
 // SERVICIOS
 
