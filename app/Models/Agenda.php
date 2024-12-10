@@ -9,26 +9,24 @@ class Agenda extends Model
 {
     use HasFactory;
 
+    protected $table = 'agendas';
+
     protected $fillable = [
-        'title',
-        'paciente_id',
-        'medico_id',
-        'event_type',
+        'id_paciente',
+        'id_medico',
         'date',
         'hora',
         'motivo',
-        'detalles',
+        //'status',
     ];
 
-    // Relación con el modelo Paciente
     public function paciente()
     {
-        return $this->belongsTo(Paciente::class);
+        return $this->belongsTo(Paciente::class, 'id_paciente');
     }
 
-    // Relación con el modelo Medico
     public function medico()
     {
-        return $this->belongsTo(Medico::class);
+        return $this->belongsTo(Medico::class, 'id_medico');
     }
 }

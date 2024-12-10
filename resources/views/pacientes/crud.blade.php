@@ -103,7 +103,7 @@
                                             <a href="{{ route('pacientes.edit', $paciente->id) }}" class="boton-con-imagen-interna" style="width: 35px; height: 37px">
                                                 <img src="{{ asset('images/edit.png') }}" style="width: 35px; height: 37px">
                                             </a>
-                                            @if (auth()->user()->tipo==="admin")
+                                            @if (auth()->user()->tipo==="admin" || auth()->user()->tipo==="doctor")
                                                 <form action="{{ route('pacientes.destroy', $paciente->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
