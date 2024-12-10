@@ -7,6 +7,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ConsultaController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +44,13 @@ Route::delete('/medicos/{id}', [MedicoController::class, 'destroy'])->middleware
 
 // AGENDA
 
-Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
-Route::post('/agenda/store', [AgendaController::class, 'store'])->name('agenda.store');
+Route::get('/agenda', [AgendaController::class, 'index'])->middleware(['auth', 'verified'])->name('agenda');
+Route::post('/agenda/store', [AgendaController::class, 'store'])->middleware(['auth', 'verified'])->name('agenda.store');
+Route::get('/agenda/events', [AgendaController::class, 'fetchEvents'])->middleware(['auth', 'verified'])->name('agenda.events');
+Route::get('/agenda/{id}', [AgendaController::class, 'fetchEventDetails'])->middleware(['auth', 'verified']);
+Route::delete('/agenda/{id}', [AgendaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('agenda.destroy');
+// Ruta para actualizar una cita
+Route::put('/agenda/update/{id}', [AgendaController::class, 'update'])->name('agenda.update');
 
 // SERVICIOS
 
@@ -101,16 +107,10 @@ Route::get('/nuevo_pago', function () {
 
 // CONSULTAS
 
-Route::get('/consultas', function () {
-    return view('consultas.crud');
-})->middleware(['auth', 'verified'])->name('consultas');
-
-Route::get('/nueva_consulta', function () {
-    return view('consultas.new');
-})->middleware(['auth', 'verified'])->name('nueva_consulta');
-
-
-
+Route::get('/consultas', [ConsultaController::class, 'index'])->middleware(['auth', 'verified'])->name('consultas');
+Route::get('/consultas/{id}', [ConsultaController::class, 'show'])->middleware(['auth', 'verified'])->name('consultas.paciente');
+Route::post('/consultas/store', [ConsultaController::class, 'store'])->middleware(['auth', 'verified'])->name('consultas.store');
+Route::get('consultas/{id}/pdf', [ConsultaController::class, 'crear_pdf'])->middleware(['auth', 'verified'])->name('consultas.pdf');
 
 
 // PERFIL

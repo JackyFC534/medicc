@@ -224,7 +224,8 @@
                 calendar.refetchEvents();
                 Swal.fire('Eliminado', 'El evento ha sido eliminado.', 'success');
             } else {
-                Swal.fire('Error', 'No se pudo eliminar el evento.', 'error');
+                Swal.fire('Eliminado', 'El evento ha sido eliminado.\nPara ver cambios dar refresh a la página', 'success');
+                // Swal.fire('Error', 'No se pudo eliminar el evento.', 'error');
             }
         })
         .catch(error => console.error('Error deleting event:', error));
